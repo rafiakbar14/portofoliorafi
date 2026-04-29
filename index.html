@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafi Akbar — Solo Founder & AI Automation Enthusiast</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:           #111113;
+    --bg2:          #18181b;
+    --bg3:          #222226;
+    --blue:         #4f7fff;
+    --blue-dim:     #1e2d55;
+    --blue-light:   rgba(79,127,255,0.1);
+    --yellow:       #f5c800;
+    --yellow-dim:   rgba(245,200,0,0.12);
+    --text:         #e8e8ea;
+    --muted:        #7c7c85;
+    --border:       rgba(255,255,255,0.07);
+    --border-md:    rgba(255,255,255,0.11);
+    --font:         'Poppins', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(17,17,19,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--blue); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.83rem; font-weight: 400; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  section { padding: 6rem 2.5rem; max-width: 1000px; margin: 0 auto; }
+  hr.divider { border: none; border-top: 1px solid var(--border); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 7rem; padding-bottom: 4rem;
+    position: relative;
+  }
+  .hero-blob {
+    position: absolute; right: -8%; top: 18%;
+    width: 460px; height: 460px; border-radius: 50%;
+    background: var(--blue); opacity: 0.07;
+    pointer-events: none; filter: blur(80px);
+  }
+  .hero-blob2 {
+    position: absolute; right: 15%; top: 50%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: var(--yellow); opacity: 0.06;
+    pointer-events: none; filter: blur(60px);
+  }
+  .hero-eyebrow {
+    font-size: 0.74rem; letter-spacing: 0.14em; color: var(--muted);
+    font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 24px; height: 2px;
+    background: var(--yellow); display: inline-block; border-radius: 2px;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 800; line-height: 0.95;
+    letter-spacing: -0.03em; margin-bottom: 2rem;
+    color: var(--text);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 460px;
+    line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.6rem; border-radius: 6px;
+    font-family: var(--font); font-weight: 600;
+    font-size: 0.88rem; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,127,255,0.25); }
+  .btn-yellow { background: var(--yellow); color: #111113; font-weight: 700; }
+  .btn-yellow:hover { background: #f0bf00; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,0,0.2); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-md); }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    padding-top: 2.5rem; border-top: 1px solid var(--border);
+  }
+  .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.2rem; }
+  .stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+  /* SECTION COMMON */
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.14em; color: var(--muted);
+    font-weight: 500; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: ''; width: 18px; height: 2px;
+    background: var(--yellow); display: inline-block; border-radius: 2px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.9rem;
+    color: var(--text);
+  }
+  .section-desc {
+    color: var(--muted); max-width: 520px;
+    font-size: 0.95rem; margin-bottom: 2.5rem; font-weight: 300;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.8; font-weight: 300; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .about-photo {
+    aspect-ratio: 3/4; background: var(--bg2);
+    border: 1px solid var(--border); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-photo::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 56px; height: 56px; background: var(--yellow); opacity: 0.35;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  .about-photo::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 56px; height: 56px; background: var(--blue); opacity: 0.25;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .skill-group { background: var(--bg); padding: 1.75rem; transition: background 0.2s; }
+  .skill-group:hover { background: var(--bg2); }
+  .skill-group-title {
+    font-size: 0.68rem; letter-spacing: 0.12em;
+    color: var(--yellow); font-weight: 600; margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag {
+    font-size: 0.79rem; padding: 4px 11px;
+    border: 1px solid var(--border-md); color: var(--muted);
+    border-radius: 4px; transition: all 0.2s; font-weight: 400;
+  }
+  .skill-tag:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 10px; bottom: 10px; width: 1px;
+    background: var(--border-md);
+  }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.4rem; top: 7px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--yellow); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--yellow);
+  }
+  .timeline-period { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 0.3rem; font-weight: 400; }
+  .timeline-role { font-size: 1.08rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--text); }
+  .timeline-company { font-size: 0.84rem; color: var(--blue); margin-bottom: 0.6rem; font-weight: 400; }
+  .timeline-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 12px;
+  }
+  .project-card {
+    background: var(--bg2); padding: 1.75rem;
+    border: 1px solid var(--border); border-radius: 10px;
+    text-decoration: none; color: inherit; display: block;
+    transition: all 0.22s; position: relative;
+    border-top: 3px solid var(--bg3);
+  }
+  .project-card:hover {
+    border-top-color: var(--blue);
+    border-color: var(--border-md);
+    transform: translateY(-3px);
+  }
+  .project-tag {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em;
+    color: var(--yellow); background: var(--yellow-dim);
+    padding: 3px 10px; margin-bottom: 1rem; font-weight: 600; border-radius: 4px;
+  }
+  .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; line-height: 1.35; color: var(--text); }
+  .project-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .project-arrow {
+    display: inline-block; margin-top: 1.2rem;
+    color: var(--muted); font-size: 0.82rem; font-weight: 500;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .project-card:hover .project-arrow { transform: translate(3px,-2px); color: var(--blue); }
+
+  /* BLOG */
+  .blog-list {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .blog-item {
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    padding: 1.2rem 1.75rem;
+    display: flex; align-items: center; gap: 2rem;
+    text-decoration: none; color: inherit; transition: background 0.2s;
+  }
+  .blog-item:last-child { border-bottom: none; }
+  .blog-item:hover { background: var(--bg3); }
+  .blog-date { font-size: 0.74rem; color: var(--muted); min-width: 90px; font-weight: 400; }
+  .blog-title { font-size: 0.91rem; flex: 1; color: var(--text); font-weight: 400; }
+  .blog-arrow { color: var(--muted); transition: transform 0.2s, color 0.2s; font-size: 0.9rem; }
+  .blog-item:hover .blog-arrow { transform: translateX(4px); color: var(--blue); }
+  .blog-placeholder {
+    border: 1px dashed var(--border-md); border-radius: 10px;
+    padding: 3rem 2rem; text-align: center; color: var(--muted);
+    font-size: 0.88rem; background: var(--bg2);
+  }
+  .blog-loading { color: var(--muted); font-size: 0.88rem; padding: 2rem; text-align: center; }
+
+  /* CONTACT */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-big {
+    font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.25rem; color: var(--text);
+  }
+  .contact-big span { color: var(--blue); }
+  .contact-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 300; }
+  .social-links { display: flex; flex-direction: column; gap: 0.6rem; }
+  .social-link {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--muted); font-size: 0.87rem;
+    padding: 0.75rem 1rem; border: 1px solid var(--border);
+    border-radius: 8px; border-left: 3px solid var(--yellow);
+    transition: all 0.2s; background: var(--bg2);
+  }
+  .social-link:hover { color: var(--text); background: var(--bg3); border-color: var(--border-md); }
+  .social-platform { font-weight: 600; color: var(--text); min-width: 80px; font-size: 0.81rem; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 5px; }
+  .form-field label { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
+  .form-field input, .form-field textarea {
+    background: var(--bg2); border: 1px solid var(--border-md);
+    color: var(--text); padding: 0.75rem 1rem;
+    font-family: var(--font); font-size: 0.88rem;
+    border-radius: 7px; outline: none; resize: vertical;
+    transition: border-color 0.2s; font-weight: 300;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--blue); }
+  .form-field textarea { min-height: 110px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem; max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.77rem; color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.65s ease both; }
+  .hero-eyebrow { animation-delay: 0.08s; }
+  .hero h1     { animation-delay: 0.18s; }
+  .hero-sub    { animation-delay: 0.3s; }
+  .hero-actions{ animation-delay: 0.4s; }
+  .hero-stats  { animation-delay: 0.5s; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photo { aspect-ratio: 1/1; }
+    .hero-stats { gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">RA.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-eyebrow">BASED IN SAMARINDA, KALIMANTAN TIMUR</div>
+  <h1>Halo, saya<br><em>Rafi Akbar.</em></h1>
+  <p class="hero-sub">Solo Founder & AI Automation Enthusiast — membangun bisnis, konten, dan sistem yang bekerja sendiri.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-primary">Lihat Project →</a>
+    <a href="#contact" class="btn btn-yellow">Hubungi Saya</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">3+</div><div class="stat-label">Bisnis Aktif</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">Tahun Pengalaman</div></div>
+    <div><div class="stat-num">∞</div><div class="stat-label">Ide per Hari</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="section-label">01 — ABOUT</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Sedikit tentang saya.</h2>
+      <div class="about-text">
+        <p>Saya <strong>Rafi Akbar</strong>, seorang solo founder yang membangun bisnis dari Samarinda. Saya percaya bahwa satu orang dengan sistem yang tepat bisa melakukan pekerjaan tim.</p>
+        <p>Saat ini saya mengelola beberapa bisnis sekaligus — dari <strong>minimarket</strong>, <strong>marketplace reseller</strong> (CCTV & mesin absensi), hingga <strong>content creation</strong>. Semuanya dibangun sambil terus belajar dan bereksperimen dengan AI & automation.</p>
+        <p>Passion saya ada di persimpangan antara bisnis, teknologi, dan konten — mencari cara agar sistem bisa berjalan lebih efisien dengan lebih sedikit tenaga manual.</p>
+      </div>
+    </div>
+    <div class="about-photo">
+      <div class="photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6 21c0-3.314 2.686-6 6-6s6 2.686 6 6"/></svg>
+        <span style="font-size:0.73rem;letter-spacing:0.06em;color:#555;">FOTO KAMU DI SINI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="skills">
+  <div class="section-label">02 — SKILLS</div>
+  <h2 class="section-title">Apa yang saya kuasai.</h2>
+  <p class="section-desc">Kombinasi skill bisnis, digital, dan teknis yang dikembangkan dari pengalaman langsung di lapangan.</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">BISNIS & OPERASI</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Manajemen Bisnis</span>
+        <span class="skill-tag">Minimarket Ops</span>
+        <span class="skill-tag">Marketplace Strategy</span>
+        <span class="skill-tag">HPP & Margin Analysis</span>
+        <span class="skill-tag">Financial Projection</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">DIGITAL & KONTEN</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Content Creation</span>
+        <span class="skill-tag">Instagram Carousel</span>
+        <span class="skill-tag">Meta Ads</span>
+        <span class="skill-tag">Personal Branding</span>
+        <span class="skill-tag">Copywriting</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI & AUTOMATION</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AI Prompting</span>
+        <span class="skill-tag">Claude / ChatGPT</span>
+        <span class="skill-tag">Workflow Automation</span>
+        <span class="skill-tag">Vibe Coding</span>
+        <span class="skill-tag">SaaS Ideation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">TOOLS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Excel</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">Facebook Marketplace</span>
+        <span class="skill-tag">Shopee / Tokopedia</span>
+        <span class="skill-tag">Canva</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="experience">
+  <div class="section-label">03 — EXPERIENCE</div>
+  <h2 class="section-title">Perjalanan bisnis saya.</h2>
+  <p class="section-desc">Pengalaman yang dibangun melalui terjun langsung, bukan sekadar teori.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">2023 — Sekarang</div>
+      <div class="timeline-role">Content Creator & Digital Marketing</div>
+      <div class="timeline-company">Sari Madu Bakery, Samarinda</div>
+      <div class="timeline-desc">Mengelola konten media sosial, membuat sistem daftar harga digital (~1.900 item), dan mengembangkan materi pemasaran untuk bisnis kuliner.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2022 — Sekarang</div>
+      <div class="timeline-role">Founder & Operator</div>
+      <div class="timeline-company">Minimarket, Samarinda</div>
+      <div class="timeline-desc">Mengelola operasional minimarket harian termasuk manajemen stok, rekonsiliasi kas, dan sistem pencatatan keuangan sederhana.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2021 — Sekarang</div>
+      <div class="timeline-role">Marketplace Reseller</div>
+      <div class="timeline-company">Facebook Marketplace & Platform Lain</div>
+      <div class="timeline-desc">Menjual produk CCTV, mesin absensi, dan aksesoris terkait. Mengelola listing, negosiasi, dan layanan purna jual secara mandiri.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2024 — Sekarang</div>
+      <div class="timeline-role">Indie Builder & AI Experimenter</div>
+      <div class="timeline-company">Independent</div>
+      <div class="timeline-desc">Mengembangkan produk digital, ebook bisnis, dan prototype SaaS menggunakan AI tools. Fokus pada otomasi workflow untuk UMKM Indonesia.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="projects">
+  <div class="section-label">04 — PROJECTS</div>
+  <h2 class="section-title">Yang sudah saya bangun.</h2>
+  <p class="section-desc">Dari konten sampai tools — ini beberapa project yang pernah saya kerjakan.</p>
+  <div class="projects-grid">
+    <a href="#" class="project-card">
+      <span class="project-tag">EBOOK</span>
+      <div class="project-title">Hidden Business Models</div>
+      <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify, dll) dan relevansinya untuk UMKM Indonesia.</div>
+      <span class="project-arrow">↗ Lihat Project</span>
+    </a>
+    <a href="#" class="project-card">
+      <span class="project-tag">KONTEN</span>
+      <div class="project-title">Kopi Xpress Instagram Series</div>
+      <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi untuk brand Kopi Xpress.</div>
+      <span class="project-arrow">↗ Lihat Project</span>
+    </a>
+    <a href="#" class="project-card">
+      <span class="project-tag">TOOL</span>
+      <div class="project-title">HPP Calculator — Sari Madu</div>
+      <div class="project-desc">Spreadsheet Excel dengan kalkulasi HPP otomatis, analisis margin, dan daftar harga 1.900+ item untuk bisnis kuliner.</div>
+      <span class="project-arrow">↗ Lihat Project</span>
+    </a>
+    <a href="#" class="project-card">
+      <span class="project-tag">PROTOTYPE</span>
+      <div class="project-title">AI Wrapper SaaS — UMKM</div>
+      <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi deskripsi produk dan chat.</div>
+      <span class="project-arrow">↗ Lihat Project</span>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="blog">
+  <div class="section-label">05 — BLOG</div>
+  <h2 class="section-title">Tulisan terbaru.</h2>
+  <p class="section-desc">Pemikiran tentang bisnis, AI, dan membangun sesuatu dari nol. Baca selengkapnya di Medium.</p>
+  <div id="blog-container">
+    <div class="blog-placeholder">
+      <div style="margin-bottom:0.6rem;font-size:1.4rem;opacity:0.15;">✍</div>
+      <div style="font-weight:500;margin-bottom:0.4rem;color:var(--text);">Medium belum terhubung</div>
+      <div style="font-size:0.82rem;">Isi variabel <code style="background:var(--blue-dim);color:var(--blue);padding:2px 7px;border-radius:4px;font-family:monospace;">MEDIUM_USERNAME</code> di bagian script untuk menampilkan artikel otomatis.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <div class="section-label">06 — CONTACT</div>
+  <div class="contact-wrap">
+    <div>
+      <h2 class="contact-big">Mari <span>terhubung.</span></h2>
+      <p class="contact-sub">Mau kolaborasi, ngobrolin bisnis, atau sekadar sapa? Reach out lewat platform di bawah ini.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/rafiakbar.digital" target="_blank" class="social-link">
+          <span class="social-platform">Instagram</span>
+          <span>@rafiakbar.digital</span>
+        </a>
+        <a href="https://wa.me/62XXXXXXXXXX" target="_blank" class="social-link">
+          <span class="social-platform">WhatsApp</span>
+          <span>+62 XXX-XXXX-XXXX</span>
+        </a>
+        <a href="mailto:rafi@email.com" class="social-link">
+          <span class="social-platform">Email</span>
+          <span>rafi@email.com</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-field">
+        <label>NAMA</label>
+        <input type="text" placeholder="Nama kamu">
+      </div>
+      <div class="form-field">
+        <label>EMAIL</label>
+        <input type="email" placeholder="email@kamu.com">
+      </div>
+      <div class="form-field">
+        <label>PESAN</label>
+        <textarea placeholder="Ceritain sesuatu..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="align-self:flex-start;" onclick="alert('Hubungkan form ini ke Formspree atau backend kamu!')">Kirim Pesan →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Rafi Akbar. All rights reserved.</span>
+  <span>Built with ☕ di Samarinda</span>
+</footer>
+
+<script>
+const MEDIUM_USERNAME = '';
+
+async function loadMediumPosts() {
+  if (!MEDIUM_USERNAME) return;
+  const container = document.getElementById('blog-container');
+  container.innerHTML = '<div class="blog-loading">Memuat artikel...</div>';
+  try {
+    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}&count=5`);
+    const data = await res.json();
+    if (!data.items || !data.items.length) { container.innerHTML = '<div class="blog-loading">Belum ada artikel.</div>'; return; }
+    const list = document.createElement('div');
+    list.className = 'blog-list';
+    data.items.forEach(item => {
+      const date = new Date(item.pubDate).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' });
+      const a = document.createElement('a');
+      a.href = item.link; a.target = '_blank'; a.className = 'blog-item';
+      a.innerHTML = `<span class="blog-date">${date}</span><span class="blog-title">${item.title}</span><span class="blog-arrow">→</span>`;
+      list.appendChild(a);
+    });
+    container.innerHTML = ''; container.appendChild(list);
+  } catch(e) { container.innerHTML = '<div class="blog-loading">Gagal memuat artikel.</div>'; }
+}
+loadMediumPosts();
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : ''; });
+});
+</script>
+</body>
+</html>

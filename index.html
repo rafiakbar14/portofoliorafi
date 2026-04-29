@@ -42,6 +42,7 @@
     background: rgba(17,17,19,0.88);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.65s ease both;
   }
   .nav-logo {
     font-weight: 800; font-size: 1.1rem;
@@ -64,16 +65,18 @@
     position: relative;
   }
   .hero-blob {
-    position: absolute; right: -8%; top: 18%;
+    position: absolute; right: 0%; top: -5%;
     width: 460px; height: 460px; border-radius: 50%;
-    background: var(--blue); opacity: 0.07;
+    background: var(--blue); opacity: 0.35;
     pointer-events: none; filter: blur(80px);
+    animation: floatBlob 18s ease-in-out infinite;
   }
   .hero-blob2 {
-    position: absolute; right: 15%; top: 50%;
+    position: absolute; right: 15%; top: 65%;
     width: 200px; height: 200px; border-radius: 50%;
-    background: var(--yellow); opacity: 0.06;
+    background: var(--yellow); opacity: 0.28;
     pointer-events: none; filter: blur(60px);
+    animation: floatBlob2 22s ease-in-out infinite;
   }
   .hero-eyebrow {
     font-size: 0.74rem; letter-spacing: 0.14em; color: var(--muted);
@@ -89,14 +92,16 @@
     font-weight: 800; line-height: 0.95;
     letter-spacing: -0.03em; margin-bottom: 2rem;
     color: var(--text);
+    text-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.5);
   }
   .hero h1 em {
     font-style: normal;
     color: var(--blue);
   }
   .hero-sub {
-    font-size: 1.05rem; color: var(--muted); max-width: 460px;
+    font-size: 1.05rem; color: var(--text); max-width: 460px;
     line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300;
+    text-shadow: 0 0 30px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.6);
   }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
 
@@ -118,8 +123,8 @@
     display: flex; gap: 3rem; flex-wrap: wrap;
     padding-top: 2.5rem; border-top: 1px solid var(--border);
   }
-  .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.2rem; }
-  .stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+  .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.2rem; text-shadow: 0 0 30px rgba(0,0,0,0.8); }
+  .stat-label { font-size: 0.75rem; color: var(--text); font-weight: 400; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
 
   /* SECTION COMMON */
   .section-label {
@@ -203,6 +208,15 @@
   .timeline-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
 
   /* PROJECTS */
+  .project-category { margin-top: 2.5rem; }
+  .project-category:first-of-type { margin-top: 1.5rem; }
+  .project-category-title {
+    font-size: 1rem; color: var(--text); margin-bottom: 1rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.75rem; letter-spacing: 0.05em;
+  }
+  .project-category-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
   .projects-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 12px;
@@ -297,11 +311,25 @@
     font-size: 0.77rem; color: var(--muted);
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); filter: blur(12px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
-  .hero > * { animation: fadeUp 0.65s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); filter: blur(12px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-30px, 20px) scale(0.9); }
+  }
+  @keyframes floatBlob2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-40px, 30px) scale(1.2); }
+    66% { transform: translate(20px, -30px) scale(0.85); }
+  }
+  .hero > *:not(.hero-blob):not(.hero-blob2) { animation: fadeUp 0.65s ease both; }
   .hero-eyebrow { animation-delay: 0.08s; }
   .hero h1     { animation-delay: 0.18s; }
   .hero-sub    { animation-delay: 0.3s; }
@@ -309,7 +337,16 @@
   .hero-stats  { animation-delay: 0.5s; }
 
   @media (max-width: 700px) {
-    nav { padding: 1rem 1.25rem; }
+    .hero-blob { top: -5%; right: -30%; }
+    .hero-blob2 { top: 85%; right: -10%; }
+    nav { 
+      padding: 1.5rem 1.25rem; 
+      background: transparent; 
+      border-bottom: none; 
+      backdrop-filter: none;
+      position: absolute;
+      justify-content: center;
+    }
     .nav-links { display: none; }
     section { padding: 4rem 1.25rem; }
     .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -322,11 +359,15 @@
 <body>
 
 <nav>
-  <a href="#hero" class="nav-logo">RA.</a>
+  <a href="#hero" class="nav-logo">
+    <img src="logo-symbol.svg" alt="Rafi Akbar" style="height: 48px; width: auto; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.85));">
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#business">Business</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -380,43 +421,40 @@
   <p class="section-desc">Kombinasi skill bisnis, digital, dan teknis yang dikembangkan dari pengalaman langsung di lapangan.</p>
   <div class="skills-grid">
     <div class="skill-group">
-      <div class="skill-group-title">BISNIS & OPERASI</div>
+      <div class="skill-group-title">BISNIS & INVESTASI</div>
       <div class="skill-tags">
         <span class="skill-tag">Manajemen Bisnis</span>
-        <span class="skill-tag">Minimarket Ops</span>
-        <span class="skill-tag">Marketplace Strategy</span>
-        <span class="skill-tag">HPP & Margin Analysis</span>
-        <span class="skill-tag">Financial Projection</span>
+        <span class="skill-tag">Strategi Operasional</span>
+        <span class="skill-tag">Investasi</span>
+        <span class="skill-tag">Analisa Saham</span>
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">DIGITAL & KONTEN</div>
+      <div class="skill-group-title">DIGITAL CONTENT & PAID ADS</div>
       <div class="skill-tags">
-        <span class="skill-tag">Content Creation</span>
-        <span class="skill-tag">Instagram Carousel</span>
+        <span class="skill-tag">Video Editing</span>
+        <span class="skill-tag">Feed / Carousel</span>
         <span class="skill-tag">Meta Ads</span>
-        <span class="skill-tag">Personal Branding</span>
+        <span class="skill-tag">Google Ads</span>
         <span class="skill-tag">Copywriting</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">AI & AUTOMATION</div>
       <div class="skill-tags">
-        <span class="skill-tag">AI Prompting</span>
-        <span class="skill-tag">Claude / ChatGPT</span>
-        <span class="skill-tag">Workflow Automation</span>
         <span class="skill-tag">Vibe Coding</span>
-        <span class="skill-tag">SaaS Ideation</span>
+        <span class="skill-tag">AI Orchestration</span>
+        <span class="skill-tag">LLM</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">TOOLS</div>
       <div class="skill-tags">
-        <span class="skill-tag">Microsoft Excel</span>
-        <span class="skill-tag">HTML / CSS</span>
-        <span class="skill-tag">Facebook Marketplace</span>
-        <span class="skill-tag">Shopee / Tokopedia</span>
+        <span class="skill-tag">Corel Draw</span>
+        <span class="skill-tag">Inkscape</span>
         <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Google Antigravity</span>
+        <span class="skill-tag">Claude Code</span>
       </div>
     </div>
   </div>
@@ -426,32 +464,80 @@
 
 <section id="experience">
   <div class="section-label">03 — EXPERIENCE</div>
-  <h2 class="section-title">Perjalanan bisnis saya.</h2>
-  <p class="section-desc">Pengalaman yang dibangun melalui terjun langsung, bukan sekadar teori.</p>
+  <h2 class="section-title">Pengalaman kerja saya.</h2>
+  <p class="section-desc">Riwayat pekerjaan profesional di bidang kreatif dan pemasaran digital.</p>
   <div class="timeline">
     <div class="timeline-item">
+      <div class="timeline-period">Desember 2025 — Sekarang</div>
+      <div class="timeline-role">Ads Specialist</div>
+      <div class="timeline-company">Sari Madu Bakery</div>
+      <div class="timeline-desc">Mengelola strategi periklanan digital untuk meningkatkan visibilitas dan penjualan brand.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Agustus 2024 — Oktober 2025</div>
+      <div class="timeline-role">Media Content Creator</div>
+      <div class="timeline-company">Roomys Cafe & Bakery</div>
+      <div class="timeline-desc">Membuat dan mengelola konten media sosial untuk keperluan pemasaran dan promosi kafe.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="business">
+  <div class="section-label">04 — ENTREPRENEURSHIP</div>
+  <h2 class="section-title">Perjalanan bisnis mandiri.</h2>
+  <p class="section-desc">Usaha dan inisiatif yang saya bangun dan kelola sendiri dari nol.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">2026 — Sekarang</div>
+      <div class="timeline-role">SaaS Builder (Experimental)</div>
+      <div class="timeline-company">Proyek Mandiri</div>
+      <div class="timeline-desc">Memulai dan mengeksplorasi pengembangan berbagai <em>prototype</em> produk SaaS (seperti Kazana, dll) sebagai eksperimen inovasi digital.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Oktober 2025 — Sekarang</div>
+      <div class="timeline-role">Founder</div>
+      <div class="timeline-company">PT. Qubicin.com Situs Estetik</div>
+      <div class="timeline-desc">Mendirikan agensi digital kreatif yang melayani jasa pembuatan <em>website</em>, aplikasi Android, dan pengelolaan media sosial.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Mei 2025 — Nov 2025</div>
+      <div class="timeline-role">Founder (F&B)</div>
+      <div class="timeline-company">InginTahu Samarinda</div>
+      <div class="timeline-desc">Merintis bisnis kuliner kaki lima berupa cemilan tahu bakso. Dihentikan (discontinue) untuk mengalokasikan fokus pada bisnis B2B.</div>
+    </div>
+    <div class="timeline-item">
       <div class="timeline-period">2023 — Sekarang</div>
-      <div class="timeline-role">Content Creator & Digital Marketing</div>
-      <div class="timeline-company">Sari Madu Bakery, Samarinda</div>
-      <div class="timeline-desc">Mengelola konten media sosial, membuat sistem daftar harga digital (~1.900 item), dan mengembangkan materi pemasaran untuk bisnis kuliner.</div>
+      <div class="timeline-role">Founder & Operator IT</div>
+      <div class="timeline-company">Kuvanto</div>
+      <div class="timeline-desc">Evolusi dari usaha <em>reseller</em>. Berfokus pada penyediaan jasa instalasi CCTV terstruktur, mesin kasir (POS), dan setup jaringan operasional kantor.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-period">2022 — Sekarang</div>
-      <div class="timeline-role">Founder & Operator</div>
-      <div class="timeline-company">Minimarket, Samarinda</div>
-      <div class="timeline-desc">Mengelola operasional minimarket harian termasuk manajemen stok, rekonsiliasi kas, dan sistem pencatatan keuangan sederhana.</div>
+      <div class="timeline-period">2020 — 2023</div>
+      <div class="timeline-role">Independent Seller</div>
+      <div class="timeline-company">Facebook Marketplace</div>
+      <div class="timeline-desc">Mengawali perjalanan bisnis dengan berjualan barang elektronik dan rumah tangga, sebelum akhirnya melakukan <em>pivot</em> ke layanan CCTV pada 2023.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="education">
+  <div class="section-label">05 — EDUCATION</div>
+  <h2 class="section-title">Pendidikan saya.</h2>
+  <p class="section-desc">Latar belakang akademis dan tempat saya menuntut ilmu.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">2018 — 2021</div>
+      <div class="timeline-role">Jurusan Rekayasa Piranti Lunak</div>
+      <div class="timeline-company">SMKN 7 Samarinda</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-period">2021 — Sekarang</div>
-      <div class="timeline-role">Marketplace Reseller</div>
-      <div class="timeline-company">Facebook Marketplace & Platform Lain</div>
-      <div class="timeline-desc">Menjual produk CCTV, mesin absensi, dan aksesoris terkait. Mengelola listing, negosiasi, dan layanan purna jual secara mandiri.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-period">2024 — Sekarang</div>
-      <div class="timeline-role">Indie Builder & AI Experimenter</div>
-      <div class="timeline-company">Independent</div>
-      <div class="timeline-desc">Mengembangkan produk digital, ebook bisnis, dan prototype SaaS menggunakan AI tools. Fokus pada otomasi workflow untuk UMKM Indonesia.</div>
+      <div class="timeline-period">2015 — 2018</div>
+      <div class="timeline-role">Sekolah Menengah Pertama</div>
+      <div class="timeline-company">SMP Negeri 1 Samarinda</div>
     </div>
   </div>
 </section>
@@ -459,41 +545,68 @@
 <hr class="divider">
 
 <section id="projects">
-  <div class="section-label">04 — PROJECTS</div>
-  <h2 class="section-title">Yang sudah saya bangun.</h2>
+  <div class="section-label">06 — PROJECTS</div>
+  <h2 class="section-title">Yang berhasil saya selesaikan.</h2>
   <p class="section-desc">Dari konten sampai tools — ini beberapa project yang pernah saya kerjakan.</p>
-  <div class="projects-grid">
-    <a href="#" class="project-card">
-      <span class="project-tag">EBOOK</span>
-      <div class="project-title">Hidden Business Models</div>
-      <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify, dll) dan relevansinya untuk UMKM Indonesia.</div>
-      <span class="project-arrow">↗ Lihat Project</span>
-    </a>
-    <a href="#" class="project-card">
-      <span class="project-tag">KONTEN</span>
-      <div class="project-title">Kopi Xpress Instagram Series</div>
-      <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi untuk brand Kopi Xpress.</div>
-      <span class="project-arrow">↗ Lihat Project</span>
-    </a>
-    <a href="#" class="project-card">
-      <span class="project-tag">TOOL</span>
-      <div class="project-title">HPP Calculator — Sari Madu</div>
-      <div class="project-desc">Spreadsheet Excel dengan kalkulasi HPP otomatis, analisis margin, dan daftar harga 1.900+ item untuk bisnis kuliner.</div>
-      <span class="project-arrow">↗ Lihat Project</span>
-    </a>
-    <a href="#" class="project-card">
-      <span class="project-tag">PROTOTYPE</span>
-      <div class="project-title">AI Wrapper SaaS — UMKM</div>
-      <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi deskripsi produk dan chat.</div>
-      <span class="project-arrow">↗ Lihat Project</span>
-    </a>
+  <div class="project-category">
+    <div class="project-category-title">Portofolio Konten</div>
+    <div class="projects-grid">
+      <a href="#" class="project-card">
+        <span class="project-tag">KONTEN</span>
+        <div class="project-title">Kopi Xpress Instagram Series</div>
+        <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi untuk brand Kopi Xpress.</div>
+        <span class="project-arrow">↗ Lihat Project</span>
+      </a>
+      <a href="#" class="project-card">
+        <span class="project-tag">EBOOK</span>
+        <div class="project-title">Hidden Business Models</div>
+        <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify, dll) dan relevansinya untuk UMKM Indonesia.</div>
+        <span class="project-arrow">↗ Lihat Project</span>
+      </a>
+      <a href="https://www.instagram.com/p/DULGXPRE1is/" target="_blank" class="project-card" style="background-image: linear-gradient(to bottom, rgba(17,17,19,0.7), rgba(17,17,19,0.95)), url('sari-madu-thumbnail.png'); background-size: cover; background-position: center; border-color: var(--blue-dim);">
+        <span class="project-tag" style="background: var(--blue); color: #fff;">INSTAGRAM REEL</span>
+        <div class="project-title">Sari Madu — Social Media Strategy</div>
+        <div class="project-desc">Dokumentasi perjalanan dan strategi konten digital untuk Sari Madu Bakery. Fokus pada engagement dan brand storytelling.</div>
+        <span class="project-arrow">↗ Tonton di Instagram</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-category">
+    <div class="project-category-title">Paid Ads</div>
+    <div class="projects-grid">
+      <a href="#" class="project-card">
+        <span class="project-tag">META ADS</span>
+        <div class="project-title">Sari Madu Bakery Campaign</div>
+        <div class="project-desc">Strategi dan eksekusi Meta Ads untuk meningkatkan brand awareness dan penjualan produk selama musim liburan.</div>
+        <span class="project-arrow">↗ Lihat Project</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-category">
+    <div class="project-category-title">Coding & Tools</div>
+    <div class="projects-grid">
+      <a href="#" class="project-card">
+        <span class="project-tag">PROTOTYPE</span>
+        <div class="project-title">AI Wrapper SaaS — UMKM</div>
+        <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi deskripsi produk dan chat.</div>
+        <span class="project-arrow">↗ Lihat Project</span>
+      </a>
+      <a href="#" class="project-card">
+        <span class="project-tag">AUTOMATION</span>
+        <div class="project-title">HPP Calculator & Sistem</div>
+        <div class="project-desc">Sistem spreadsheet otomatis untuk kalkulasi HPP, analisis margin, dan daftar harga 1.900+ item bisnis kuliner.</div>
+        <span class="project-arrow">↗ Lihat Project</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <hr class="divider">
 
 <section id="blog">
-  <div class="section-label">05 — BLOG</div>
+  <div class="section-label">07 — BLOG</div>
   <h2 class="section-title">Tulisan terbaru.</h2>
   <p class="section-desc">Pemikiran tentang bisnis, AI, dan membangun sesuatu dari nol. Baca selengkapnya di Medium.</p>
   <div id="blog-container">
@@ -508,7 +621,7 @@
 <hr class="divider">
 
 <section id="contact">
-  <div class="section-label">06 — CONTACT</div>
+  <div class="section-label">08 — CONTACT</div>
   <div class="contact-wrap">
     <div>
       <h2 class="contact-big">Mari <span>terhubung.</span></h2>

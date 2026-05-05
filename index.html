@@ -1,710 +1,1494 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rafi Akbar — Solo Founder & AI Automation Enthusiast</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:           #111113;
-    --bg2:          #18181b;
-    --bg3:          #222226;
-    --blue:         #4f7fff;
-    --blue-dim:     #1e2d55;
-    --blue-light:   rgba(79,127,255,0.1);
-    --yellow:       #f5c800;
-    --yellow-dim:   rgba(245,200,0,0.12);
-    --text:         #e8e8ea;
-    --muted:        #7c7c85;
-    --border:       rgba(255,255,255,0.07);
-    --border-md:    rgba(255,255,255,0.11);
-    --font:         'Poppins', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 2.5rem;
-    background: rgba(17,17,19,0.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    animation: fadeDown 0.65s ease both;
-  }
-  .nav-logo {
-    font-weight: 800; font-size: 1.1rem;
-    color: var(--blue); text-decoration: none; letter-spacing: -0.01em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.83rem; font-weight: 400; color: var(--muted);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  section { padding: 6rem 2.5rem; max-width: 1000px; margin: 0 auto; }
-  hr.divider { border: none; border-top: 1px solid var(--border); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; padding-top: 7rem; padding-bottom: 4rem;
-    position: relative;
-  }
-  .hero-blob {
-    position: absolute; right: 0%; top: -5%;
-    width: 460px; height: 460px; border-radius: 50%;
-    background: var(--blue); opacity: 0.35;
-    pointer-events: none; filter: blur(80px);
-    animation: floatBlob 18s ease-in-out infinite;
-  }
-  .hero-blob2 {
-    position: absolute; right: 15%; top: 65%;
-    width: 200px; height: 200px; border-radius: 50%;
-    background: var(--yellow); opacity: 0.28;
-    pointer-events: none; filter: blur(60px);
-    animation: floatBlob2 22s ease-in-out infinite;
-  }
-  .hero-eyebrow {
-    font-size: 0.74rem; letter-spacing: 0.14em; color: var(--muted);
-    font-weight: 500; margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-eyebrow::before {
-    content: ''; width: 24px; height: 2px;
-    background: var(--yellow); display: inline-block; border-radius: 2px;
-  }
-  .hero h1 {
-    font-size: clamp(3rem, 9vw, 6.5rem);
-    font-weight: 800; line-height: 0.95;
-    letter-spacing: -0.03em; margin-bottom: 2rem;
-    color: var(--text);
-    text-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.5);
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--blue);
-  }
-  .hero-sub {
-    font-size: 1.05rem; color: var(--text); max-width: 460px;
-    line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300;
-    text-shadow: 0 0 30px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.6);
-  }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 0.75rem 1.6rem; border-radius: 6px;
-    font-family: var(--font); font-weight: 600;
-    font-size: 0.88rem; text-decoration: none;
-    transition: all 0.2s; cursor: pointer; border: none;
-  }
-  .btn-primary { background: var(--blue); color: #fff; }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,127,255,0.25); }
-  .btn-yellow { background: var(--yellow); color: #111113; font-weight: 700; }
-  .btn-yellow:hover { background: #f0bf00; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,0,0.2); }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-md); }
-  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
-
-  .hero-stats {
-    display: flex; gap: 3rem; flex-wrap: wrap;
-    padding-top: 2.5rem; border-top: 1px solid var(--border);
-  }
-  .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.2rem; text-shadow: 0 0 30px rgba(0,0,0,0.8); }
-  .stat-label { font-size: 0.75rem; color: var(--text); font-weight: 400; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
-
-  /* SECTION COMMON */
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.14em; color: var(--muted);
-    font-weight: 500; margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-label::before {
-    content: ''; width: 18px; height: 2px;
-    background: var(--yellow); display: inline-block; border-radius: 2px;
-  }
-  .section-title {
-    font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
-    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.9rem;
-    color: var(--text);
-  }
-  .section-desc {
-    color: var(--muted); max-width: 520px;
-    font-size: 0.95rem; margin-bottom: 2.5rem; font-weight: 300;
-  }
-
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.8; font-weight: 300; }
-  .about-text p strong { color: var(--text); font-weight: 600; }
-  .about-photo {
-    aspect-ratio: 3/4; background: var(--bg2);
-    border: 1px solid var(--border); border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .about-photo::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 56px; height: 56px; background: var(--yellow); opacity: 0.35;
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-  }
-  .about-photo::after {
-    content: ''; position: absolute; bottom: 0; right: 0;
-    width: 56px; height: 56px; background: var(--blue); opacity: 0.25;
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-  }
-  .photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-  }
-  .skill-group { background: var(--bg); padding: 1.75rem; transition: background 0.2s; }
-  .skill-group:hover { background: var(--bg2); }
-  .skill-group-title {
-    font-size: 0.68rem; letter-spacing: 0.12em;
-    color: var(--yellow); font-weight: 600; margin-bottom: 1rem;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-  .skill-tag {
-    font-size: 0.79rem; padding: 4px 11px;
-    border: 1px solid var(--border-md); color: var(--muted);
-    border-radius: 4px; transition: all 0.2s; font-weight: 400;
-  }
-  .skill-tag:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
-
-  /* EXPERIENCE */
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: ''; position: absolute;
-    left: 0; top: 10px; bottom: 10px; width: 1px;
-    background: var(--border-md);
-  }
-  .timeline-item { position: relative; margin-bottom: 3rem; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -2.4rem; top: 7px;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--yellow); border: 2px solid var(--bg);
-    box-shadow: 0 0 0 2px var(--yellow);
-  }
-  .timeline-period { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 0.3rem; font-weight: 400; }
-  .timeline-role { font-size: 1.08rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--text); }
-  .timeline-company { font-size: 0.84rem; color: var(--blue); margin-bottom: 0.6rem; font-weight: 400; }
-  .timeline-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
-
-  /* PROJECTS */
-  .project-category { margin-top: 2.5rem; }
-  .project-category:first-of-type { margin-top: 1.5rem; }
-  .project-category-title {
-    font-size: 1rem; color: var(--text); margin-bottom: 1rem; font-weight: 600;
-    display: flex; align-items: center; gap: 0.75rem; letter-spacing: 0.05em;
-  }
-  .project-category-title::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 12px;
-  }
-  .project-card {
-    background: var(--bg2); padding: 1.75rem;
-    border: 1px solid var(--border); border-radius: 10px;
-    text-decoration: none; color: inherit; display: block;
-    transition: all 0.22s; position: relative;
-    border-top: 3px solid var(--bg3);
-  }
-  .project-card:hover {
-    border-top-color: var(--blue);
-    border-color: var(--border-md);
-    transform: translateY(-3px);
-  }
-  .project-tag {
-    display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em;
-    color: var(--yellow); background: var(--yellow-dim);
-    padding: 3px 10px; margin-bottom: 1rem; font-weight: 600; border-radius: 4px;
-  }
-  .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; line-height: 1.35; color: var(--text); }
-  .project-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
-  .project-arrow {
-    display: inline-block; margin-top: 1.2rem;
-    color: var(--muted); font-size: 0.82rem; font-weight: 500;
-    transition: transform 0.2s, color 0.2s;
-  }
-  .project-card:hover .project-arrow { transform: translate(3px,-2px); color: var(--blue); }
-
-  /* BLOG */
-  .blog-list {
-    display: flex; flex-direction: column;
-    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-  }
-  .blog-item {
-    background: var(--bg2); border-bottom: 1px solid var(--border);
-    padding: 1.2rem 1.75rem;
-    display: flex; align-items: center; gap: 2rem;
-    text-decoration: none; color: inherit; transition: background 0.2s;
-  }
-  .blog-item:last-child { border-bottom: none; }
-  .blog-item:hover { background: var(--bg3); }
-  .blog-date { font-size: 0.74rem; color: var(--muted); min-width: 90px; font-weight: 400; }
-  .blog-title { font-size: 0.91rem; flex: 1; color: var(--text); font-weight: 400; }
-  .blog-arrow { color: var(--muted); transition: transform 0.2s, color 0.2s; font-size: 0.9rem; }
-  .blog-item:hover .blog-arrow { transform: translateX(4px); color: var(--blue); }
-  .blog-placeholder {
-    border: 1px dashed var(--border-md); border-radius: 10px;
-    padding: 3rem 2rem; text-align: center; color: var(--muted);
-    font-size: 0.88rem; background: var(--bg2);
-  }
-  .blog-loading { color: var(--muted); font-size: 0.88rem; padding: 2rem; text-align: center; }
-
-  /* CONTACT */
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .contact-big {
-    font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800;
-    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.25rem; color: var(--text);
-  }
-  .contact-big span { color: var(--blue); }
-  .contact-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 300; }
-  .social-links { display: flex; flex-direction: column; gap: 0.6rem; }
-  .social-link {
-    display: flex; align-items: center; gap: 12px;
-    text-decoration: none; color: var(--muted); font-size: 0.87rem;
-    padding: 0.75rem 1rem; border: 1px solid var(--border);
-    border-radius: 8px; border-left: 3px solid var(--yellow);
-    transition: all 0.2s; background: var(--bg2);
-  }
-  .social-link:hover { color: var(--text); background: var(--bg3); border-color: var(--border-md); }
-  .social-platform { font-weight: 600; color: var(--text); min-width: 80px; font-size: 0.81rem; }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-field { display: flex; flex-direction: column; gap: 5px; }
-  .form-field label { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
-  .form-field input, .form-field textarea {
-    background: var(--bg2); border: 1px solid var(--border-md);
-    color: var(--text); padding: 0.75rem 1rem;
-    font-family: var(--font); font-size: 0.88rem;
-    border-radius: 7px; outline: none; resize: vertical;
-    transition: border-color 0.2s; font-weight: 300;
-  }
-  .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); }
-  .form-field input:focus, .form-field textarea:focus { border-color: var(--blue); }
-  .form-field textarea { min-height: 110px; }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem; max-width: 1000px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.77rem; color: var(--muted);
-  }
-
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); filter: blur(12px); }
-    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); filter: blur(12px); }
-    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
-  }
-  @keyframes floatBlob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-30px, 20px) scale(0.9); }
-  }
-  @keyframes floatBlob2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(-40px, 30px) scale(1.2); }
-    66% { transform: translate(20px, -30px) scale(0.85); }
-  }
-  .hero > *:not(.hero-blob):not(.hero-blob2) { animation: fadeUp 0.65s ease both; }
-  .hero-eyebrow { animation-delay: 0.08s; }
-  .hero h1     { animation-delay: 0.18s; }
-  .hero-sub    { animation-delay: 0.3s; }
-  .hero-actions{ animation-delay: 0.4s; }
-  .hero-stats  { animation-delay: 0.5s; }
-
-  @media (max-width: 700px) {
-    .hero-blob { top: -5%; right: -30%; }
-    .hero-blob2 { top: 85%; right: -10%; }
-    nav { 
-      padding: 1.5rem 1.25rem; 
-      background: transparent; 
-      border-bottom: none; 
-      backdrop-filter: none;
-      position: absolute;
-      justify-content: center;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafi Akbar — Solo Founder & AI Automation Enthusiast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .nav-links { display: none; }
-    section { padding: 4rem 1.25rem; }
-    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-photo { aspect-ratio: 1/1; }
-    .hero-stats { gap: 2rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-</style>
+
+    :root {
+      --bg: #111113;
+      --bg2: #18181b;
+      --bg3: #222226;
+      --blue: #4f7fff;
+      --blue-dim: #1e2d55;
+      --blue-light: rgba(79, 127, 255, 0.1);
+      --yellow: #f5c800;
+      --yellow-dim: rgba(245, 200, 0, 0.12);
+      --text: #e8e8ea;
+      --muted: #7c7c85;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-md: rgba(255, 255, 255, 0.11);
+      --font: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(17, 17, 19, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      animation: fadeDown 0.65s ease both;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.83rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    section {
+      padding: 6rem 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 7rem;
+      padding-bottom: 4rem;
+      position: relative;
+    }
+
+    .hero-blob {
+      position: absolute;
+      right: 0%;
+      top: -5%;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.35;
+      pointer-events: none;
+      filter: blur(80px);
+      animation: floatBlob 18s ease-in-out infinite;
+    }
+
+    .hero-blob2 {
+      position: absolute;
+      right: 15%;
+      top: 65%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--yellow);
+      opacity: 0.28;
+      pointer-events: none;
+      filter: blur(60px);
+      animation: floatBlob2 22s ease-in-out infinite;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--yellow);
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      color: var(--text);
+      text-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.6rem;
+      border-radius: 6px;
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(79, 127, 255, 0.25);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: #111113;
+      font-weight: 700;
+    }
+
+    .btn-yellow:hover {
+      background: #f0bf00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 200, 0, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-md);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text);
+      font-weight: 400;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    /* SECTION COMMON */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 18px;
+      height: 2px;
+      background: var(--yellow);
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+      color: var(--text);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-photo {
+      aspect-ratio: 3/4;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 56px;
+      height: 56px;
+      background: var(--yellow);
+      opacity: 0.35;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .about-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 56px;
+      height: 56px;
+      background: var(--blue);
+      opacity: 0.25;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-group {
+      background: var(--bg);
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+
+    .skill-group:hover {
+      background: var(--bg2);
+    }
+
+    .skill-group-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      font-size: 0.79rem;
+      padding: 4px 11px;
+      border: 1px solid var(--border-md);
+      color: var(--muted);
+      border-radius: 4px;
+      transition: all 0.2s;
+      font-weight: 400;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* EXPERIENCE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--border-md);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--yellow);
+    }
+
+    .timeline-period {
+      font-size: 0.74rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+      font-weight: 400;
+    }
+
+    .timeline-role {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    .timeline-company {
+      font-size: 0.84rem;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
+      font-weight: 400;
+    }
+
+    .timeline-desc {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* PROJECTS */
+    .project-category {
+      margin-top: 2.5rem;
+    }
+
+    .project-category:first-of-type {
+      margin-top: 1.5rem;
+    }
+
+    .project-category-title {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .project-category-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.22s;
+      position: relative;
+      border-top: 3px solid var(--bg3);
+    }
+
+    .project-card:hover {
+      border-top-color: var(--blue);
+      border-color: var(--border-md);
+      transform: translateY(-3px);
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+      background: var(--yellow-dim);
+      padding: 3px 10px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .project-arrow {
+      display: inline-block;
+      margin-top: 1.2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translate(3px, -2px);
+      color: var(--blue);
+    }
+
+    /* BLOG */
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .blog-item {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .blog-item:last-child {
+      border-bottom: none;
+    }
+
+    .blog-item:hover {
+      background: var(--bg3);
+    }
+
+    .blog-date {
+      font-size: 0.74rem;
+      color: var(--muted);
+      min-width: 90px;
+      font-weight: 400;
+    }
+
+    .blog-title {
+      font-size: 0.91rem;
+      flex: 1;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .blog-arrow {
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .blog-item:hover .blog-arrow {
+      transform: translateX(4px);
+      color: var(--blue);
+    }
+
+    .blog-placeholder {
+      border: 1px dashed var(--border-md);
+      border-radius: 10px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      background: var(--bg2);
+    }
+
+    .blog-loading {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* CONTACT */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-big {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .contact-big span {
+      color: var(--blue);
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.87rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      border-left: 3px solid var(--yellow);
+      transition: all 0.2s;
+      background: var(--bg2);
+    }
+
+    .social-link:hover {
+      color: var(--text);
+      background: var(--bg3);
+      border-color: var(--border-md);
+    }
+
+    .social-platform {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 80px;
+      font-size: 0.81rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-field label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: var(--bg2);
+      border: 1px solid var(--border-md);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      font-family: var(--font);
+      font-size: 0.88rem;
+      border-radius: 7px;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.2s;
+      font-weight: 300;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--blue);
+    }
+
+    .form-field textarea {
+      min-height: 110px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.77rem;
+      color: var(--muted);
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+        filter: blur(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes floatBlob {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(30px, -50px) scale(1.1);
+      }
+
+      66% {
+        transform: translate(-30px, 20px) scale(0.9);
+      }
+    }
+
+    @keyframes floatBlob2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(-40px, 30px) scale(1.2);
+      }
+
+      66% {
+        transform: translate(20px, -30px) scale(0.85);
+      }
+    }
+
+    .hero>*:not(.hero-blob):not(.hero-blob2) {
+      animation: fadeUp 0.65s ease both;
+    }
+
+    .hero-eyebrow {
+      animation-delay: 0.08s;
+    }
+
+    .hero h1 {
+      animation-delay: 0.18s;
+    }
+
+    .hero-sub {
+      animation-delay: 0.3s;
+    }
+
+    .hero-actions {
+      animation-delay: 0.4s;
+    }
+
+    .hero-stats {
+      animation-delay: 0.5s;
+    }
+
+    @media (max-width: 700px) {
+      .hero-blob {
+        top: -5%;
+        right: -60%;
+        width: 340px;
+        height: 340px;
+      }
+
+      .hero-blob2 {
+        top: 85%;
+        right: -30%;
+        width: 160px;
+        height: 160px;
+      }
+
+      nav {
+        padding: 1.5rem 1.25rem;
+        background: transparent;
+        border-bottom: none;
+        backdrop-filter: none;
+        position: absolute;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .about-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-photo {
+        aspect-ratio: 1/1;
+      }
+
+      .hero-stats {
+        gap: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3rem);
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-group {
+        padding: 1.25rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        padding: 1.25rem;
+      }
+
+      .blog-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        padding: 1rem 1.25rem;
+      }
+
+      .blog-date {
+        min-width: auto;
+      }
+
+      .timeline {
+        padding-left: 1.5rem;
+      }
+
+      .timeline-item::before {
+        left: -1.9rem;
+      }
+
+      .timeline-item>div[style*="position:absolute"] {
+        display: none;
+      }
+
+      .contact-wrap {
+        gap: 2rem;
+      }
+
+      .social-link {
+        padding: 0.65rem 0.85rem;
+      }
+
+      .contact-form .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1.5rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .stat-num {
+        font-size: 1.8rem;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.65rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.6rem, 6vw, 2rem);
+      }
+
+      .timeline-item {
+        margin-bottom: 2rem;
+      }
+
+      .project-category-title {
+        font-size: 0.9rem;
+      }
+
+      .contact-big {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="#hero" class="nav-logo">
-    <img src="logo-symbol.svg" alt="Rafi Akbar" style="height: 48px; width: auto; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.85));">
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#business">Business</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="logo-symbol.svg" alt="Rafi Akbar"
+        style="height: 48px; width: auto; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.85));">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#business">Business</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-blob"></div>
-  <div class="hero-blob2"></div>
-  <div class="hero-eyebrow">BASED IN SAMARINDA, KALIMANTAN TIMUR</div>
-  <h1>Halo, saya<br><em>Rafi Akbar.</em></h1>
-  <p class="hero-sub">Solo Founder & AI Automation Enthusiast — membangun bisnis, konten, dan sistem yang bekerja sendiri.</p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn btn-primary">Lihat Project →</a>
-    <a href="#contact" class="btn btn-yellow">Hubungi Saya</a>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-num">3+</div><div class="stat-label">Bisnis Aktif</div></div>
-    <div><div class="stat-num">5+</div><div class="stat-label">Tahun Pengalaman</div></div>
-    <div><div class="stat-num">∞</div><div class="stat-label">Ide per Hari</div></div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="about">
-  <div class="section-label">01 — ABOUT</div>
-  <div class="about-grid">
-    <div>
-      <h2 class="section-title">Sedikit tentang saya.</h2>
-      <div class="about-text">
-        <p>Saya <strong>Rafi Akbar</strong>, seorang solo founder yang membangun bisnis dari Samarinda. Saya percaya bahwa satu orang dengan sistem yang tepat bisa melakukan pekerjaan tim.</p>
-        <p>Saat ini saya mengelola beberapa bisnis sekaligus — dari <strong>minimarket</strong>, <strong>marketplace reseller</strong> (CCTV & mesin absensi), hingga <strong>content creation</strong>. Semuanya dibangun sambil terus belajar dan bereksperimen dengan AI & automation.</p>
-        <p>Passion saya ada di persimpangan antara bisnis, teknologi, dan konten — mencari cara agar sistem bisa berjalan lebih efisien dengan lebih sedikit tenaga manual.</p>
+  <section class="hero" id="hero">
+    <div class="hero-blob"></div>
+    <div class="hero-blob2"></div>
+    <div class="hero-eyebrow">BASED IN SAMARINDA, KALIMANTAN TIMUR</div>
+    <h1>Halo, saya<br><em>Rafi Akbar.</em></h1>
+    <p class="hero-sub">Solo Founder & AI Automation Enthusiast — membangun bisnis, konten, dan sistem yang bekerja
+      sendiri.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">Lihat Project →</a>
+      <a href="#contact" class="btn btn-yellow">Hubungi Saya</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Bisnis Aktif</div>
+      </div>
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Tahun Pengalaman</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Ide per Hari</div>
       </div>
     </div>
-    <div class="about-photo">
-      <div class="photo-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6 21c0-3.314 2.686-6 6-6s6 2.686 6 6"/></svg>
-        <span style="font-size:0.73rem;letter-spacing:0.06em;color:#555;">FOTO KAMU DI SINI</span>
+  </section>
+
+  <hr class="divider">
+
+  <section id="about">
+    <div class="section-label">01 — ABOUT</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Sedikit tentang saya.</h2>
+        <div class="about-text">
+          <p>Saya <strong>Rafi Akbar</strong>, seorang solo founder yang membangun bisnis dari Samarinda. Saya percaya
+            bahwa satu orang dengan sistem yang tepat bisa melakukan pekerjaan tim.</p>
+          <p>Saat ini saya mengelola beberapa bisnis sekaligus — dari <strong>minimarket</strong>, <strong>marketplace
+              reseller</strong> (CCTV & mesin absensi), hingga <strong>content creation</strong>. Semuanya dibangun
+            sambil terus belajar dan bereksperimen dengan AI & automation.</p>
+          <p>Passion saya ada di persimpangan antara bisnis, teknologi, dan konten — mencari cara agar sistem bisa
+            berjalan lebih efisien dengan lebih sedikit tenaga manual.</p>
+        </div>
+      </div>
+      <div class="about-photo">
+        <div class="photo-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="12" cy="10" r="3" />
+            <path d="M6 21c0-3.314 2.686-6 6-6s6 2.686 6 6" />
+          </svg>
+          <span style="font-size:0.73rem;letter-spacing:0.06em;color:#555;">FOTO KAMU DI SINI</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="divider">
+  <hr class="divider">
 
-<section id="skills">
-  <div class="section-label">02 — SKILLS</div>
-  <h2 class="section-title">Apa yang saya kuasai.</h2>
-  <p class="section-desc">Kombinasi skill bisnis, digital, dan teknis yang dikembangkan dari pengalaman langsung di lapangan.</p>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <div class="skill-group-title">BISNIS & INVESTASI</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Manajemen Bisnis</span>
-        <span class="skill-tag">Strategi Operasional</span>
-        <span class="skill-tag">Investasi</span>
-        <span class="skill-tag">Analisa Saham</span>
+  <section id="skills">
+    <div class="section-label">02 — SKILLS</div>
+    <h2 class="section-title">Apa yang saya kuasai.</h2>
+    <p class="section-desc">Kombinasi skill bisnis, digital, dan teknis yang dikembangkan dari pengalaman langsung di
+      lapangan.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">BISNIS & INVESTASI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Manajemen Bisnis</span>
+          <span class="skill-tag">Strategi Operasional</span>
+          <span class="skill-tag">Investasi</span>
+          <span class="skill-tag">Analisa Saham</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">DIGITAL CONTENT & PAID ADS</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Feed / Carousel</span>
+          <span class="skill-tag">Meta Ads</span>
+          <span class="skill-tag">Google Ads</span>
+          <span class="skill-tag">Copywriting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI & AUTOMATION</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Vibe Coding</span>
+          <span class="skill-tag">AI Orchestration</span>
+          <span class="skill-tag">LLM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">TOOLS</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Corel Draw</span>
+          <span class="skill-tag">Inkscape</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Google Antigravity</span>
+          <span class="skill-tag">Claude Code</span>
+        </div>
       </div>
     </div>
-    <div class="skill-group">
-      <div class="skill-group-title">DIGITAL CONTENT & PAID ADS</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Video Editing</span>
-        <span class="skill-tag">Feed / Carousel</span>
-        <span class="skill-tag">Meta Ads</span>
-        <span class="skill-tag">Google Ads</span>
-        <span class="skill-tag">Copywriting</span>
+  </section>
+
+  <hr class="divider">
+
+  <section id="experience">
+    <div class="section-label">03 — EXPERIENCE</div>
+    <h2 class="section-title">Pengalaman kerja saya.</h2>
+    <p class="section-desc">Riwayat pekerjaan profesional di bidang kreatif dan pemasaran digital.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg></div>
+        <div class="timeline-period">Desember 2025 — Sekarang</div>
+        <div class="timeline-role">Ads Specialist</div>
+        <div class="timeline-company">Sari Madu Bakery</div>
+        <div class="timeline-desc">Mengelola strategi periklanan digital untuk meningkatkan visibilitas dan penjualan
+          brand.</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg></div>
+        <div class="timeline-period">Agustus 2024 — Oktober 2025</div>
+        <div class="timeline-role">Media Content Creator</div>
+        <div class="timeline-company">Roomys Cafe & Bakery</div>
+        <div class="timeline-desc">Membuat dan mengelola konten media sosial untuk keperluan pemasaran dan promosi kafe.
+        </div>
       </div>
     </div>
-    <div class="skill-group">
-      <div class="skill-group-title">AI & AUTOMATION</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Vibe Coding</span>
-        <span class="skill-tag">AI Orchestration</span>
-        <span class="skill-tag">LLM</span>
+  </section>
+
+  <hr class="divider">
+
+  <section id="business">
+    <div class="section-label">04 — ENTREPRENEURSHIP</div>
+    <h2 class="section-title">Perjalanan bisnis mandiri.</h2>
+    <p class="section-desc">Usaha dan inisiatif yang saya bangun dan kelola sendiri dari nol.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="timeline-period">2026 — Sekarang</div>
+        <div class="timeline-role">SaaS Builder (Experimental)</div>
+        <div class="timeline-company">Proyek Mandiri</div>
+        <div class="timeline-desc">Memulai dan mengeksplorasi pengembangan berbagai <em>prototype</em> produk SaaS
+          (seperti Kazana, dll) sebagai eksperimen inovasi digital.</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="timeline-period">Oktober 2025 — Sekarang</div>
+        <div class="timeline-role">Founder</div>
+        <div class="timeline-company">PT. Qubicin.com Situs Estetik</div>
+        <div class="timeline-desc">Mendirikan agensi digital kreatif yang melayani jasa pembuatan <em>website</em>,
+          aplikasi Android, dan pengelolaan media sosial.</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="timeline-period">Mei 2025 — Nov 2025</div>
+        <div class="timeline-role">Founder (F&B)</div>
+        <div class="timeline-company">InginTahu Samarinda</div>
+        <div class="timeline-desc">Merintis bisnis kuliner kaki lima berupa cemilan tahu bakso. Dihentikan (discontinue)
+          untuk mengalokasikan fokus pada bisnis B2B.</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="timeline-period">2023 — Sekarang</div>
+        <div class="timeline-role">Founder & Operator IT</div>
+        <div class="timeline-company">Kuvanto</div>
+        <div class="timeline-desc">Evolusi dari usaha <em>reseller</em>. Berfokus pada penyediaan jasa instalasi CCTV
+          terstruktur, mesin kasir (POS), dan setup jaringan operasional kantor.</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg></div>
+        <div class="timeline-period">2020 — 2023</div>
+        <div class="timeline-role">Independent Seller</div>
+        <div class="timeline-company">Facebook Marketplace</div>
+        <div class="timeline-desc">Mengawali perjalanan bisnis dengan berjualan barang elektronik dan rumah tangga,
+          sebelum akhirnya melakukan <em>pivot</em> ke layanan CCTV pada 2023.</div>
       </div>
     </div>
-    <div class="skill-group">
-      <div class="skill-group-title">TOOLS</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Corel Draw</span>
-        <span class="skill-tag">Inkscape</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">Google Antigravity</span>
-        <span class="skill-tag">Claude Code</span>
+  </section>
+
+  <hr class="divider">
+
+  <section id="education">
+    <div class="section-label">05 — EDUCATION</div>
+    <h2 class="section-title">Pendidikan saya.</h2>
+    <p class="section-desc">Latar belakang akademis dan tempat saya menuntut ilmu.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg></div>
+        <div class="timeline-period">2018 — 2021</div>
+        <div class="timeline-role">Jurusan Rekayasa Piranti Lunak</div>
+        <div class="timeline-company">SMKN 7 Samarinda</div>
+      </div>
+      <div class="timeline-item">
+        <div
+          style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg></div>
+        <div class="timeline-period">2015 — 2018</div>
+        <div class="timeline-role">Sekolah Menengah Pertama</div>
+        <div class="timeline-company">SMP Negeri 1 Samarinda</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="divider">
+  <hr class="divider">
 
-<section id="experience">
-  <div class="section-label">03 — EXPERIENCE</div>
-  <h2 class="section-title">Pengalaman kerja saya.</h2>
-  <p class="section-desc">Riwayat pekerjaan profesional di bidang kreatif dan pemasaran digital.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-      <div class="timeline-period">Desember 2025 — Sekarang</div>
-      <div class="timeline-role">Ads Specialist</div>
-      <div class="timeline-company">Sari Madu Bakery</div>
-      <div class="timeline-desc">Mengelola strategi periklanan digital untuk meningkatkan visibilitas dan penjualan brand.</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-      <div class="timeline-period">Agustus 2024 — Oktober 2025</div>
-      <div class="timeline-role">Media Content Creator</div>
-      <div class="timeline-company">Roomys Cafe & Bakery</div>
-      <div class="timeline-desc">Membuat dan mengelola konten media sosial untuk keperluan pemasaran dan promosi kafe.</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="business">
-  <div class="section-label">04 — ENTREPRENEURSHIP</div>
-  <h2 class="section-title">Perjalanan bisnis mandiri.</h2>
-  <p class="section-desc">Usaha dan inisiatif yang saya bangun dan kelola sendiri dari nol.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="timeline-period">2026 — Sekarang</div>
-      <div class="timeline-role">SaaS Builder (Experimental)</div>
-      <div class="timeline-company">Proyek Mandiri</div>
-      <div class="timeline-desc">Memulai dan mengeksplorasi pengembangan berbagai <em>prototype</em> produk SaaS (seperti Kazana, dll) sebagai eksperimen inovasi digital.</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="timeline-period">Oktober 2025 — Sekarang</div>
-      <div class="timeline-role">Founder</div>
-      <div class="timeline-company">PT. Qubicin.com Situs Estetik</div>
-      <div class="timeline-desc">Mendirikan agensi digital kreatif yang melayani jasa pembuatan <em>website</em>, aplikasi Android, dan pengelolaan media sosial.</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="timeline-period">Mei 2025 — Nov 2025</div>
-      <div class="timeline-role">Founder (F&B)</div>
-      <div class="timeline-company">InginTahu Samarinda</div>
-      <div class="timeline-desc">Merintis bisnis kuliner kaki lima berupa cemilan tahu bakso. Dihentikan (discontinue) untuk mengalokasikan fokus pada bisnis B2B.</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="timeline-period">2023 — Sekarang</div>
-      <div class="timeline-role">Founder & Operator IT</div>
-      <div class="timeline-company">Kuvanto</div>
-      <div class="timeline-desc">Evolusi dari usaha <em>reseller</em>. Berfokus pada penyediaan jasa instalasi CCTV terstruktur, mesin kasir (POS), dan setup jaringan operasional kantor.</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="timeline-period">2020 — 2023</div>
-      <div class="timeline-role">Independent Seller</div>
-      <div class="timeline-company">Facebook Marketplace</div>
-      <div class="timeline-desc">Mengawali perjalanan bisnis dengan berjualan barang elektronik dan rumah tangga, sebelum akhirnya melakukan <em>pivot</em> ke layanan CCTV pada 2023.</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="education">
-  <div class="section-label">05 — EDUCATION</div>
-  <h2 class="section-title">Pendidikan saya.</h2>
-  <p class="section-desc">Latar belakang akademis dan tempat saya menuntut ilmu.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-      <div class="timeline-period">2018 — 2021</div>
-      <div class="timeline-role">Jurusan Rekayasa Piranti Lunak</div>
-      <div class="timeline-company">SMKN 7 Samarinda</div>
-    </div>
-    <div class="timeline-item">
-      <div style="position:absolute;left:-3.2rem;top:0;width:36px;height:36px;background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-md);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-      <div class="timeline-period">2015 — 2018</div>
-      <div class="timeline-role">Sekolah Menengah Pertama</div>
-      <div class="timeline-company">SMP Negeri 1 Samarinda</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="projects">
-  <div class="section-label">06 — PROJECTS</div>
-  <h2 class="section-title">Yang berhasil saya selesaikan.</h2>
-  <p class="section-desc">Dari konten sampai tools — ini beberapa project yang pernah saya kerjakan.</p>
-  <div class="project-category">
-    <div class="project-category-title">Portofolio Konten</div>
-    <div class="projects-grid">
-      <a href="#" class="project-card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="project-tag">KONTEN</span></div>
-        <div class="project-title">Kopi Xpress Instagram Series</div>
-        <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi untuk brand Kopi Xpress.</div>
-        <span class="project-arrow">↗ Lihat Project</span>
-      </a>
-      <a href="#" class="project-card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span class="project-tag">EBOOK</span></div>
-        <div class="project-title">Hidden Business Models</div>
-        <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify, dll) dan relevansinya untuk UMKM Indonesia.</div>
-        <span class="project-arrow">↗ Lihat Project</span>
-      </a>
-      <a href="https://www.instagram.com/p/DULGXPRE1is/" target="_blank" class="project-card" style="background-image: linear-gradient(to bottom, rgba(17,17,19,0.7), rgba(17,17,19,0.95)), url('sari-madu-thumbnail.png'); background-size: cover; background-position: center; border-color: var(--blue-dim);">
-        <span class="project-tag" style="background: var(--blue); color: #fff;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>INSTAGRAM REEL</span>
-        <div class="project-title">Sari Madu — Social Media Strategy</div>
-        <div class="project-desc">Dokumentasi perjalanan dan strategi konten digital untuk Sari Madu Bakery. Fokus pada engagement dan brand storytelling.</div>
-        <span class="project-arrow">↗ Tonton di Instagram</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="project-category">
-    <div class="project-category-title">Paid Ads</div>
-    <div class="projects-grid">
-      <a href="#" class="project-card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="project-tag">META ADS</span></div>
-        <div class="project-title">Sari Madu Bakery Campaign</div>
-        <div class="project-desc">Strategi dan eksekusi Meta Ads untuk meningkatkan brand awareness dan penjualan produk selama musim liburan.</div>
-        <span class="project-arrow">↗ Lihat Project</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="project-category">
-    <div class="project-category-title">Coding & Tools</div>
-    <div class="projects-grid">
-      <a href="#" class="project-card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span class="project-tag">PROTOTYPE</span></div>
-        <div class="project-title">AI Wrapper SaaS — UMKM</div>
-        <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi deskripsi produk dan chat.</div>
-        <span class="project-arrow">↗ Lihat Project</span>
-      </a>
-      <a href="#" class="project-card">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="project-tag">AUTOMATION</span></div>
-        <div class="project-title">HPP Calculator & Sistem</div>
-        <div class="project-desc">Sistem spreadsheet otomatis untuk kalkulasi HPP, analisis margin, dan daftar harga 1.900+ item bisnis kuliner.</div>
-        <span class="project-arrow">↗ Lihat Project</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="blog">
-  <div class="section-label">07 — BLOG</div>
-  <h2 class="section-title">Tulisan terbaru.</h2>
-  <p class="section-desc">Pemikiran tentang bisnis, AI, dan membangun sesuatu dari nol. Baca selengkapnya di Medium.</p>
-  <div id="blog-container">
-    <div class="blog-placeholder">
-      <div style="margin-bottom:0.6rem;font-size:1.4rem;opacity:0.15;">✍</div>
-      <div style="font-weight:500;margin-bottom:0.4rem;color:var(--text);">Medium belum terhubung</div>
-      <div style="font-size:0.82rem;">Isi variabel <code style="background:var(--blue-dim);color:var(--blue);padding:2px 7px;border-radius:4px;font-family:monospace;">MEDIUM_USERNAME</code> di bagian script untuk menampilkan artikel otomatis.</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="contact">
-  <div class="section-label">08 — CONTACT</div>
-  <div class="contact-wrap">
-    <div>
-      <h2 class="contact-big">Mari <span>terhubung.</span></h2>
-      <p class="contact-sub">Mau kolaborasi, ngobrolin bisnis, atau sekadar sapa? Reach out lewat platform di bawah ini.</p>
-      <div class="social-links">
-        <a href="https://instagram.com/rafiakbar.digital" target="_blank" class="social-link">
-          <span class="social-platform">Instagram</span>
-          <span>@rafiakbar.digital</span>
+  <section id="projects">
+    <div class="section-label">06 — PROJECTS</div>
+    <h2 class="section-title">Yang berhasil saya selesaikan.</h2>
+    <p class="section-desc">Dari konten sampai tools — ini beberapa project yang pernah saya kerjakan.</p>
+    <div class="project-category">
+      <div class="project-category-title">Portofolio Konten</div>
+      <div class="projects-grid">
+        <a href="#" class="project-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
+              viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg><span class="project-tag">KONTEN</span></div>
+          <div class="project-title">Kopi Xpress Instagram Series</div>
+          <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi
+            untuk brand Kopi Xpress.</div>
+          <span class="project-arrow">↗ Lihat Project</span>
         </a>
-        <a href="https://wa.me/62XXXXXXXXXX" target="_blank" class="social-link">
-          <span class="social-platform">WhatsApp</span>
-          <span>+62 XXX-XXXX-XXXX</span>
+        <a href="#" class="project-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
+              viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg><span class="project-tag">EBOOK</span></div>
+          <div class="project-title">Hidden Business Models</div>
+          <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify,
+            dll) dan relevansinya untuk UMKM Indonesia.</div>
+          <span class="project-arrow">↗ Lihat Project</span>
         </a>
-        <a href="mailto:rafi@email.com" class="social-link">
-          <span class="social-platform">Email</span>
-          <span>rafi@email.com</span>
+        <a href="https://www.instagram.com/p/DULGXPRE1is/" target="_blank" class="project-card"
+          style="background-image: linear-gradient(to bottom, rgba(17,17,19,0.7), rgba(17,17,19,0.95)), url('sari-madu-thumbnail.png'); background-size: cover; background-position: center; border-color: var(--blue-dim);">
+          <span class="project-tag" style="background: var(--blue); color: #fff;"><svg width="12" height="12"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="margin-right:4px;vertical-align:middle;">
+              <polygon points="23 7 16 12 23 17 23 7" />
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+            </svg>INSTAGRAM REEL</span>
+          <div class="project-title">Sari Madu — Social Media Strategy</div>
+          <div class="project-desc">Dokumentasi perjalanan dan strategi konten digital untuk Sari Madu Bakery. Fokus
+            pada engagement dan brand storytelling.</div>
+          <span class="project-arrow">↗ Tonton di Instagram</span>
         </a>
       </div>
     </div>
-    <div class="contact-form">
-      <div class="form-field">
-        <label>NAMA</label>
-        <input type="text" placeholder="Nama kamu">
+
+    <div class="project-category">
+      <div class="project-category-title">Paid Ads</div>
+      <div class="projects-grid">
+        <a href="#" class="project-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
+              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg><span class="project-tag">META ADS</span></div>
+          <div class="project-title">Sari Madu Bakery Campaign</div>
+          <div class="project-desc">Strategi dan eksekusi Meta Ads untuk meningkatkan brand awareness dan penjualan
+            produk selama musim liburan.</div>
+          <span class="project-arrow">↗ Lihat Project</span>
+        </a>
       </div>
-      <div class="form-field">
-        <label>EMAIL</label>
-        <input type="email" placeholder="email@kamu.com">
-      </div>
-      <div class="form-field">
-        <label>PESAN</label>
-        <textarea placeholder="Ceritain sesuatu..."></textarea>
-      </div>
-      <button class="btn btn-primary" style="align-self:flex-start;" onclick="alert('Hubungkan form ini ke Formspree atau backend kamu!')">Kirim Pesan →</button>
     </div>
-  </div>
-</section>
 
-<footer>
-  <span>© 2025 Rafi Akbar. All rights reserved.</span>
-  <span>Built with ☕ di Samarinda</span>
-</footer>
+    <div class="project-category">
+      <div class="project-category-title">Coding & Tools</div>
+      <div class="projects-grid">
+        <a href="#" class="project-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
+              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg><span class="project-tag">PROTOTYPE</span></div>
+          <div class="project-title">AI Wrapper SaaS — UMKM</div>
+          <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi
+            deskripsi produk dan chat.</div>
+          <span class="project-arrow">↗ Lihat Project</span>
+        </a>
+        <a href="#" class="project-card">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
+              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg><span class="project-tag">AUTOMATION</span></div>
+          <div class="project-title">HPP Calculator & Sistem</div>
+          <div class="project-desc">Sistem spreadsheet otomatis untuk kalkulasi HPP, analisis margin, dan daftar harga
+            1.900+ item bisnis kuliner.</div>
+          <span class="project-arrow">↗ Lihat Project</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-<script>
-const MEDIUM_USERNAME = '';
+  <hr class="divider">
 
-async function loadMediumPosts() {
-  if (!MEDIUM_USERNAME) return;
-  const container = document.getElementById('blog-container');
-  container.innerHTML = '<div class="blog-loading">Memuat artikel...</div>';
-  try {
-    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}&count=5`);
-    const data = await res.json();
-    if (!data.items || !data.items.length) { container.innerHTML = '<div class="blog-loading">Belum ada artikel.</div>'; return; }
-    const list = document.createElement('div');
-    list.className = 'blog-list';
-    data.items.forEach(item => {
-      const date = new Date(item.pubDate).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' });
-      const a = document.createElement('a');
-      a.href = item.link; a.target = '_blank'; a.className = 'blog-item';
-      a.innerHTML = `<span class="blog-date">${date}</span><span class="blog-title">${item.title}</span><span class="blog-arrow">→</span>`;
-      list.appendChild(a);
+  <section id="blog">
+    <div class="section-label">07 — BLOG</div>
+    <h2 class="section-title">Tulisan terbaru.</h2>
+    <p class="section-desc">Pemikiran tentang bisnis, AI, dan membangun sesuatu dari nol. Baca selengkapnya di Medium.
+    </p>
+    <div id="blog-container">
+      <div class="blog-placeholder">
+        <div style="margin-bottom:0.6rem;font-size:1.4rem;opacity:0.15;">✍</div>
+        <div style="font-weight:500;margin-bottom:0.4rem;color:var(--text);">Medium belum terhubung</div>
+        <div style="font-size:0.82rem;">Isi variabel <code
+            style="background:var(--blue-dim);color:var(--blue);padding:2px 7px;border-radius:4px;font-family:monospace;">MEDIUM_USERNAME</code>
+          di bagian script untuk menampilkan artikel otomatis.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="contact">
+    <div class="section-label">08 — CONTACT</div>
+    <div class="contact-wrap">
+      <div>
+        <h2 class="contact-big">Mari <span>terhubung.</span></h2>
+        <p class="contact-sub">Mau kolaborasi, ngobrolin bisnis, atau sekadar sapa? Reach out lewat platform di bawah
+          ini.</p>
+        <div class="social-links">
+          <a href="https://instagram.com/rafiakbar.digital" target="_blank" class="social-link">
+            <span class="social-platform">Instagram</span>
+            <span>@rafiakbar.digital</span>
+          </a>
+          <a href="https://wa.me/62XXXXXXXXXX" target="_blank" class="social-link">
+            <span class="social-platform">WhatsApp</span>
+            <span>+62 XXX-XXXX-XXXX</span>
+          </a>
+          <a href="mailto:rafi@email.com" class="social-link">
+            <span class="social-platform">Email</span>
+            <span>rafi@email.com</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-field">
+          <label>NAMA</label>
+          <input type="text" placeholder="Nama kamu">
+        </div>
+        <div class="form-field">
+          <label>EMAIL</label>
+          <input type="email" placeholder="email@kamu.com">
+        </div>
+        <div class="form-field">
+          <label>PESAN</label>
+          <textarea placeholder="Ceritain sesuatu..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="align-self:flex-start;"
+          onclick="alert('Hubungkan form ini ke Formspree atau backend kamu!')">Kirim Pesan →</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 Rafi Akbar. All rights reserved.</span>
+    <span>Built with ☕ di Samarinda</span>
+  </footer>
+
+  <script>
+    const MEDIUM_USERNAME = '';
+
+    async function loadMediumPosts() {
+      if (!MEDIUM_USERNAME) return;
+      const container = document.getElementById('blog-container');
+      container.innerHTML = '<div class="blog-loading">Memuat artikel...</div>';
+      try {
+        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}&count=5`);
+        const data = await res.json();
+        if (!data.items || !data.items.length) { container.innerHTML = '<div class="blog-loading">Belum ada artikel.</div>'; return; }
+        const list = document.createElement('div');
+        list.className = 'blog-list';
+        data.items.forEach(item => {
+          const date = new Date(item.pubDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+          const a = document.createElement('a');
+          a.href = item.link; a.target = '_blank'; a.className = 'blog-item';
+          a.innerHTML = `<span class="blog-date">${date}</span><span class="blog-title">${item.title}</span><span class="blog-arrow">→</span>`;
+          list.appendChild(a);
+        });
+        container.innerHTML = ''; container.appendChild(list);
+      } catch (e) { container.innerHTML = '<div class="blog-loading">Gagal memuat artikel.</div>'; }
+    }
+    loadMediumPosts();
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : ''; });
     });
-    container.innerHTML = ''; container.appendChild(list);
-  } catch(e) { container.innerHTML = '<div class="blog-loading">Gagal memuat artikel.</div>'; }
-}
-loadMediumPosts();
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : ''; });
-});
-</script>
+  </script>
 </body>
+
 </html>

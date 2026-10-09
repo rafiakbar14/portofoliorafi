@@ -4,9 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rafi Akbar — Solo Founder & AI Automation Enthusiast</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <title>Rafi Akbar - Spesialis Meta Ads &amp; Konten</title>
+  <meta name="description"
+    content="Rafi Akbar, spesialis Meta Ads dan konten untuk brand kuliner serta UMKM. Iklan berbayar, konten kreatif, website, dan otomasi.">
+  <meta name="theme-color" content="#0A3C8F">
+  <meta property="og:title" content="Rafi Akbar - Spesialis Meta Ads &amp; Konten">
+  <meta property="og:description" content="Iklan yang terukur, konten yang mengundang.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="logo-symbol.svg">
+  <script>document.documentElement.classList.add('js')</script>
   <style>
     *,
     *::before,
@@ -16,1487 +22,1425 @@
       padding: 0;
     }
 
+    /* Self-hosted Poppins (latin subset) */
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/poppins-400.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/fonts/poppins-500.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/poppins-600.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('assets/fonts/poppins-700.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url('assets/fonts/poppins-800.woff2') format('woff2');
+    }
+
+    /* ---------- TOKENS ----------
+       Satu keluarga warna (biru), satu aksen (kuning).
+       Radius: kartu 16px, tombol dan pill full-round. */
     :root {
-      --bg: #111113;
-      --bg2: #18181b;
-      --bg3: #222226;
-      --blue: #4f7fff;
-      --blue-dim: #1e2d55;
-      --blue-light: rgba(79, 127, 255, 0.1);
-      --yellow: #f5c800;
-      --yellow-dim: rgba(245, 200, 0, 0.12);
-      --text: #e8e8ea;
-      --muted: #7c7c85;
-      --border: rgba(255, 255, 255, 0.07);
-      --border-md: rgba(255, 255, 255, 0.11);
-      --font: 'Poppins', sans-serif;
+      --blue-900: #064080;
+      --blue-800: #0853AC;
+      --blue-700: #0A63C9;
+      --blue-600: #1480E6;
+      --ink: #0A48A8;
+      --yellow: #FFE600;
+      --yellow-soft: #FFF04D;
+      --white: #F4F7FD;
+      --card: #FFFFFF;
+      --line: rgba(244, 247, 253, 0.16);
+      --muted: rgba(244, 247, 253, 0.72);
+      --r-card: 16px;
+      --r-pill: 999px;
+      --wrap: 1180px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.7;
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.6;
       overflow-x: hidden;
-      width: 100%;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -60px;
+      z-index: 200;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 700;
+      padding: 0.7rem 1.2rem;
+      border-radius: 0 0 12px 12px;
+      transition: top 0.2s var(--ease);
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--wrap);
+      margin-inline: auto;
+      padding-inline: 28px;
+    }
+
+    /* ---------- NAV ---------- */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem 2.5rem;
-      background: rgba(17, 17, 19, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      animation: fadeDown 0.65s ease both;
+      background: rgba(8, 83, 172, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav-logo {
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--blue);
-      text-decoration: none;
-      letter-spacing: -0.01em;
+    .nav-inner {
+      max-width: var(--wrap);
+      margin-inline: auto;
+      padding: 0 28px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .nav-brand img {
+      height: 30px;
+      width: auto;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      align-items: center;
+      gap: 1.9rem;
+      margin-left: auto;
+      font-size: 0.86rem;
+      font-weight: 500;
+      white-space: nowrap;
     }
 
     .nav-links a {
-      font-size: 0.83rem;
-      font-weight: 400;
-      color: var(--muted);
-      text-decoration: none;
+      position: relative;
+      padding: 0.3rem 0;
+      color: rgba(244, 247, 253, 0.82);
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    section {
-      padding: 6rem 2.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 7rem;
-      padding-bottom: 4rem;
-      position: relative;
-    }
-
-    .hero-blob {
-      position: absolute;
-      right: 0%;
-      top: -5%;
-      width: 460px;
-      height: 460px;
-      border-radius: 50%;
-      background: var(--blue);
-      opacity: 0.35;
-      pointer-events: none;
-      filter: blur(80px);
-      animation: floatBlob 18s ease-in-out infinite;
-    }
-
-    .hero-blob2 {
-      position: absolute;
-      right: 15%;
-      top: 65%;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: var(--yellow);
-      opacity: 0.28;
-      pointer-events: none;
-      filter: blur(60px);
-      animation: floatBlob2 22s ease-in-out infinite;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.74rem;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .hero-eyebrow::before {
+    .nav-links a::after {
       content: '';
-      width: 24px;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
       height: 2px;
       background: var(--yellow);
-      display: inline-block;
-      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease);
     }
 
-    .hero h1 {
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-      color: var(--text);
-      text-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 80px rgba(0, 0, 0, 0.5);
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--blue);
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--text);
-      max-width: 460px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      text-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 60px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 4rem;
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      padding: 0.75rem 1.6rem;
-      border-radius: 6px;
-      font-family: var(--font);
-      font-weight: 600;
+      padding: 0.72rem 1.5rem;
+      border-radius: var(--r-pill);
       font-size: 0.88rem;
-      text-decoration: none;
-      transition: all 0.2s;
+      font-weight: 700;
+      white-space: nowrap;
       cursor: pointer;
-      border: none;
+      transition: transform 0.2s var(--ease), background 0.2s, box-shadow 0.2s;
     }
 
     .btn-primary {
-      background: var(--blue);
-      color: #fff;
+      background: var(--yellow);
+      color: var(--ink);
     }
 
     .btn-primary:hover {
-      opacity: 0.88;
+      background: var(--yellow-soft);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(79, 127, 255, 0.25);
+      box-shadow: 0 10px 24px rgba(255, 230, 0, 0.3);
     }
 
-    .btn-yellow {
-      background: var(--yellow);
-      color: #111113;
-      font-weight: 700;
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
     }
 
-    .btn-yellow:hover {
-      background: #f0bf00;
+    .btn-ghost {
+      border: 1px solid rgba(244, 247, 253, 0.36);
+      color: var(--white);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245, 200, 0, 0.2);
     }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border-md);
+    .btn-ghost:active {
+      transform: translateY(0) scale(0.98);
     }
 
-    .btn-outline:hover {
-      border-color: var(--blue);
-      color: var(--blue);
+    .btn-nav {
+      padding: 0.55rem 1.15rem;
+      font-size: 0.82rem;
     }
 
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
+    /* ---------- HERO ---------- */
+    #beranda {
+      position: relative;
+      overflow: hidden;
+      padding: 104px 0 64px;
     }
 
-    .stat-num {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--blue);
-      line-height: 1;
-      margin-bottom: 0.2rem;
-      text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text);
-      font-weight: 400;
-      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    }
-
-    /* SECTION COMMON */
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 0.75rem;
-      display: flex;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
       align-items: center;
-      gap: 10px;
+      min-height: 60vh;
     }
 
-    .section-label::before {
-      content: '';
-      width: 18px;
-      height: 2px;
-      background: var(--yellow);
-      display: inline-block;
-      border-radius: 2px;
+    .hero-copy {
+      max-width: 34ch;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 5vw, 3rem);
+    h1 {
+      font-size: clamp(2.1rem, 4.4vw, 3.5rem);
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.9rem;
-      color: var(--text);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 46ch;
+      margin-bottom: 1.9rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-figure {
+      position: relative;
+    }
+
+    .figure {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-radius: var(--r-card);
+      aspect-ratio: 4/5;
+      box-shadow: 0 30px 60px rgba(6, 27, 69, 0.5);
+    }
+
+    .figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(108%);
+    }
+
+    .figure::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(200deg, var(--blue-600), var(--blue-900));
+      mix-blend-mode: multiply;
+      opacity: 0.78;
+    }
+
+    .figure-caption {
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .hero-rings {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      right: -140px;
+      top: -80px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-rings::before,
+    .hero-rings::after {
+      content: '';
+      position: absolute;
+      inset: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+    }
+
+    .hero-rings::after {
+      inset: 96px;
+    }
+
+    .hero-stipple {
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      right: -130px;
+      bottom: -150px;
+      border-radius: 50%;
+      background-color: var(--yellow);
+      background-image: radial-gradient(rgba(10, 63, 143, 0.3) 1.2px, transparent 1.3px);
+      background-size: 7px 7px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-geo {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 180px;
+      height: 120px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-geo::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 110px;
+      height: 110px;
+      background: var(--yellow);
+      clip-path: polygon(0 100%, 0 0, 100% 100%);
+    }
+
+    .hero-geo::after {
+      content: '';
+      position: absolute;
+      left: 120px;
+      bottom: 0;
+      width: 56px;
+      height: 56px;
+      background: var(--yellow);
+      border-radius: 0 100% 0 0;
+    }
+
+    /* ---------- FAKTA ---------- */
+    .facts {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--blue-800);
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fact {
+      padding: 2.2rem 2rem;
+      border-left: 1px solid var(--line);
+    }
+
+    .fact:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .fact-num {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-label {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 24ch;
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section.band {
+      padding: 92px 0;
+    }
+
+    section.band.deep {
+      background: var(--blue-800);
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+      max-width: 62ch;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
     }
 
     .section-desc {
+      margin-top: 0.9rem;
       color: var(--muted);
-      max-width: 520px;
-      font-size: 0.95rem;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+      font-size: 0.98rem;
+      line-height: 1.75;
     }
 
-    /* ABOUT */
-    .about-grid {
+    /* ---------- KEAHLIAN (bento) ---------- */
+    .bento {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 16px;
+    }
+
+    .cell-card {
+      position: relative;
+      border-radius: var(--r-card);
+      padding: 2.2rem;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+
+    .cell-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 44px rgba(6, 27, 69, 0.45);
+    }
+
+    .cell-wide {
+      grid-column: 1 / -1;
+      background: var(--blue-800);
+      border: 1px solid rgba(244, 247, 253, 0.2);
+    }
+
+    .cell-wide-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2.4rem;
       align-items: start;
     }
 
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      line-height: 1.8;
-      font-weight: 300;
+    .cell-light {
+      background: var(--card);
+      color: var(--ink);
     }
 
-    .about-text p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .about-photo {
-      aspect-ratio: 3/4;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-photo::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 56px;
-      height: 56px;
+    .cell-yellow {
       background: var(--yellow);
-      opacity: 0.35;
-      clip-path: polygon(0 0, 100% 0, 0 100%);
+      color: var(--ink);
     }
 
-    .about-photo::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 56px;
-      height: 56px;
-      background: var(--blue);
-      opacity: 0.25;
-      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    .cell-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
     }
 
-    .photo-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+    .cell-body {
+      font-size: 0.92rem;
+      line-height: 1.75;
     }
 
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
+    .cell-body.muted {
+      color: var(--muted);
     }
 
-    .skill-group {
-      background: var(--bg);
-      padding: 1.75rem;
-      transition: background 0.2s;
+    .cell-light .cell-body,
+    .cell-yellow .cell-body {
+      color: rgba(7, 27, 69, 0.8);
     }
 
-    .skill-group:hover {
-      background: var(--bg2);
-    }
-
-    .skill-group-title {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      color: var(--yellow);
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .skill-tags {
+    .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 0.5rem;
+      margin-top: 1.3rem;
     }
 
-    .skill-tag {
-      font-size: 0.79rem;
-      padding: 4px 11px;
-      border: 1px solid var(--border-md);
+    .chip {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 1.05rem;
+      border-radius: 12px;
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .cell-yellow .chip {
+      background: var(--blue-700);
+      color: var(--white);
+    }
+
+    /* ---------- PROSES ---------- */
+    .step {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2.5rem;
+      padding: 1.9rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .step-body {
+      font-size: 0.97rem;
+      line-height: 1.8;
       color: var(--muted);
-      border-radius: 4px;
-      transition: all 0.2s;
-      font-weight: 400;
+      max-width: 58ch;
     }
 
-    .skill-tag:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: var(--blue-light);
-    }
-
-    /* EXPERIENCE */
-    .timeline-icon {
-      position: absolute;
-      left: -3.2rem;
-      top: 0;
-      width: 36px;
-      height: 36px;
-      background: var(--bg2);
-      border-radius: 8px;
-      display: flex;
+    /* ---------- KARYA ---------- */
+    .work-feature {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 3rem;
       align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border-md);
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--line);
     }
 
-    .timeline {
+    .work-figure .figure {
+      aspect-ratio: 5/4;
+    }
+
+    .work-meta {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 1.1rem;
+    }
+
+    .work-title {
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-role {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 1.1rem;
+    }
+
+    .work-body {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 52ch;
+      margin-bottom: 1.4rem;
+    }
+
+    .work-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .metric-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(244, 247, 253, 0.72);
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .work-panel {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-mark {
       position: relative;
-      padding-left: 2rem;
+      aspect-ratio: 1;
+      max-width: 260px;
+      margin-left: auto;
+      border-radius: 50%;
+      background-color: var(--yellow);
+      background-image: radial-gradient(rgba(10, 63, 143, 0.28) 1.2px, transparent 1.3px);
+      background-size: 7px 7px;
+      display: grid;
+      place-items: center;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
     }
 
-    .timeline::before {
+    .work-mark::after {
       content: '';
       position: absolute;
-      left: 0;
-      top: 10px;
-      bottom: 10px;
-      width: 1px;
-      background: var(--border-md);
+      inset: -22px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+    }
+
+    .work-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding-left 0.25s var(--ease);
+    }
+
+    .work-row:first-child {
+      padding-top: 0;
+    }
+
+    .work-row:hover {
+      padding-left: 10px;
+    }
+
+    .work-row-kind {
+      flex-shrink: 0;
+      width: 130px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .work-row-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-right: auto;
+    }
+
+    .work-row-note {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ---------- TENTANG ---------- */
+    .about-intro {
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      line-height: 1.75;
+      max-width: 62ch;
+      margin-bottom: 3.2rem;
+      color: rgba(244, 247, 253, 0.9);
+    }
+
+    .duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    .col-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 1.7rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--yellow);
     }
 
     .timeline-item {
       position: relative;
-      margin-bottom: 3rem;
+      padding: 0 0 2rem 1.9rem;
+      border-left: 3px solid var(--yellow);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+      border-left-color: transparent;
     }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -2.4rem;
-      top: 7px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+      left: -9px;
+      top: 3px;
+      width: 15px;
+      height: 15px;
+      border-radius: 5px;
       background: var(--yellow);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--yellow);
     }
 
     .timeline-period {
-      font-size: 0.74rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.3rem;
-      font-weight: 400;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--yellow);
+      margin-bottom: 0.35rem;
     }
 
     .timeline-role {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       font-weight: 700;
-      margin-bottom: 0.2rem;
-      color: var(--text);
+      line-height: 1.35;
     }
 
     .timeline-company {
-      font-size: 0.84rem;
-      color: var(--blue);
-      margin-bottom: 0.6rem;
-      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
     }
 
     .timeline-desc {
-      font-size: 0.87rem;
+      font-size: 0.86rem;
       color: var(--muted);
       line-height: 1.7;
-      font-weight: 300;
+      margin-top: 0.5rem;
+      max-width: 42ch;
     }
 
-    /* PROJECTS */
-    .project-category {
-      margin-top: 2.5rem;
-    }
-
-    .project-category:first-of-type {
-      margin-top: 1.5rem;
-    }
-
-    .project-category-title {
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 1rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-
-    .project-category-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .projects-grid {
+    /* ---------- KONTAK ---------- */
+    .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 12px;
-    }
-
-    .project-card {
-      background: var(--bg2);
-      padding: 1.75rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: all 0.22s;
-      position: relative;
-      border-top: 3px solid var(--bg3);
-    }
-
-    .project-card:hover {
-      border-top-color: var(--blue);
-      border-color: var(--border-md);
-      transform: translateY(-3px);
-    }
-
-    .project-tag {
-      display: inline-block;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      color: var(--yellow);
-      background: var(--yellow-dim);
-      padding: 3px 10px;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      border-radius: 4px;
-    }
-
-    .project-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-      line-height: 1.35;
-      color: var(--text);
-    }
-
-    .project-desc {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.65;
-      font-weight: 300;
-    }
-
-    .project-arrow {
-      display: inline-block;
-      margin-top: 1.2rem;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: transform 0.2s, color 0.2s;
-    }
-
-    .project-card:hover .project-arrow {
-      transform: translate(3px, -2px);
-      color: var(--blue);
-    }
-
-    /* BLOG */
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .blog-item {
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 1.2rem 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.2s;
-    }
-
-    .blog-item:last-child {
-      border-bottom: none;
-    }
-
-    .blog-item:hover {
-      background: var(--bg3);
-    }
-
-    .blog-date {
-      font-size: 0.74rem;
-      color: var(--muted);
-      min-width: 90px;
-      font-weight: 400;
-    }
-
-    .blog-title {
-      font-size: 0.91rem;
-      flex: 1;
-      color: var(--text);
-      font-weight: 400;
-    }
-
-    .blog-arrow {
-      color: var(--muted);
-      transition: transform 0.2s, color 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .blog-item:hover .blog-arrow {
-      transform: translateX(4px);
-      color: var(--blue);
-    }
-
-    .blog-placeholder {
-      border: 1px dashed var(--border-md);
-      border-radius: 10px;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.88rem;
-      background: var(--bg2);
-    }
-
-    .blog-loading {
-      color: var(--muted);
-      font-size: 0.88rem;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    /* CONTACT */
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 0.9fr;
       gap: 4rem;
       align-items: start;
     }
 
-    .contact-big {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-
-    .contact-big span {
-      color: var(--blue);
-    }
-
-    .contact-sub {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.87rem;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      border-left: 3px solid var(--yellow);
-      transition: all 0.2s;
-      background: var(--bg2);
-    }
-
-    .social-link:hover {
-      color: var(--text);
-      background: var(--bg3);
-      border-color: var(--border-md);
-    }
-
-    .social-platform {
+    .contact-greet {
+      font-size: 1rem;
+      color: var(--yellow);
       font-weight: 600;
-      color: var(--text);
-      min-width: 80px;
-      font-size: 0.81rem;
+      margin-bottom: 0.7rem;
     }
 
-    .contact-form {
+    .contact-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
     }
 
-    .form-field {
+    .contact-row {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .form-field label {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .form-field input,
-    .form-field textarea {
-      background: var(--bg2);
-      border: 1px solid var(--border-md);
-      color: var(--text);
-      padding: 0.75rem 1rem;
-      font-family: var(--font);
-      font-size: 0.88rem;
-      border-radius: 7px;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.2s;
-      font-weight: 300;
-    }
-
-    .form-field input::placeholder,
-    .form-field textarea::placeholder {
-      color: var(--muted);
-    }
-
-    .form-field input:focus,
-    .form-field textarea:focus {
-      border-color: var(--blue);
-    }
-
-    .form-field textarea {
-      min-height: 110px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-size: 0.77rem;
+      gap: 1.2rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--line);
+      transition: padding-left 0.25s var(--ease);
+    }
+
+    .contact-row:hover {
+      padding-left: 10px;
+    }
+
+    .contact-kind {
+      flex-shrink: 0;
+      width: 110px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .contact-value {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-right: auto;
+    }
+
+    .contact-note {
+      font-size: 0.85rem;
       color: var(--muted);
     }
 
-    @keyframes fadeDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .contact-arrow {
+      font-size: 1.1rem;
+      transition: transform 0.25s var(--ease);
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    .contact-row:hover .contact-arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--blue-900);
+      padding: 2.2rem 0;
+    }
+
+    .foot-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .foot-left {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .foot-left img {
+      height: 26px;
+      width: auto;
+      opacity: 0.9;
+    }
+
+    .foot-inner a:hover {
+      color: var(--yellow);
+    }
+
+    /* ---------- REVEAL ---------- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .js .reveal.d1 {
+      transition-delay: 0.09s;
+    }
+
+    .js .reveal.d2 {
+      transition-delay: 0.18s;
+    }
+
+    .js .reveal.d3 {
+      transition-delay: 0.27s;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.6rem;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes floatBlob {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
+      .hero-copy {
+        max-width: 100%;
       }
 
-      33% {
-        transform: translate(30px, -50px) scale(1.1);
+      .hero-figure {
+        max-width: 420px;
       }
 
-      66% {
-        transform: translate(-30px, 20px) scale(0.9);
-      }
-    }
-
-    @keyframes floatBlob2 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(-40px, 30px) scale(1.2);
-      }
-
-      66% {
-        transform: translate(20px, -30px) scale(0.85);
-      }
-    }
-
-    .hero>*:not(.hero-blob):not(.hero-blob2) {
-      animation: fadeUp 0.65s ease both;
-    }
-
-    .hero-eyebrow {
-      animation-delay: 0.08s;
-    }
-
-    .hero h1 {
-      animation-delay: 0.18s;
-    }
-
-    .hero-sub {
-      animation-delay: 0.3s;
-    }
-
-    .hero-actions {
-      animation-delay: 0.4s;
-    }
-
-    .hero-stats {
-      animation-delay: 0.5s;
-    }
-
-    @media (max-width: 700px) {
-      .hero-blob {
-        top: -5%;
-        right: -60%;
+      .hero-rings {
         width: 340px;
         height: 340px;
+        right: -110px;
+        top: 40px;
       }
 
-      .hero-blob2 {
-        top: 85%;
-        right: -30%;
-        width: 160px;
-        height: 160px;
+      .hero-stipple {
+        width: 240px;
+        height: 240px;
+        right: -80px;
+        bottom: -80px;
       }
 
-      nav {
-        padding: 1.5rem 1.25rem;
-        background: transparent;
-        border-bottom: none;
-        backdrop-filter: none;
-        position: absolute;
-        justify-content: center;
+      .hero-geo {
+        transform: scale(0.7);
+        transform-origin: bottom left;
+      }
+
+      .facts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact {
+        border-left: none;
+        border-top: 1px solid var(--line);
+        padding: 1.4rem 0;
+      }
+
+      .fact:first-child {
+        border-top: none;
+      }
+
+      .cell-wide-inner,
+      .work-feature,
+      .work-panel,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .work-mark {
+        margin-left: 0;
+        max-width: 200px;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+
+      .duo {
+        grid-template-columns: 1fr;
+        gap: 2.6rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      section.band {
+        padding: 64px 0;
+      }
+
+      .wrap,
+      .nav-inner {
+        padding-inline: 20px;
       }
 
       .nav-links {
+        overflow-x: auto;
+        gap: 1.2rem;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
         display: none;
       }
 
-      section {
-        padding: 4rem 1.25rem;
+      .cell-card {
+        padding: 1.6rem;
       }
 
-      .about-grid,
-      .contact-wrap {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+      .work-row {
+        flex-wrap: wrap;
+        gap: 0.4rem;
       }
 
-      .about-photo {
-        aspect-ratio: 1/1;
-      }
-
-      .hero-stats {
-        gap: 2rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.4rem, 12vw, 3rem);
-      }
-
-      .hero-sub {
-        font-size: 0.95rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .hero-actions .btn {
+      .work-row-kind {
         width: 100%;
-        justify-content: center;
       }
 
-      .skills-grid {
-        grid-template-columns: 1fr;
+      .work-row-name {
+        margin-right: 0;
       }
 
-      .skill-group {
-        padding: 1.25rem;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card {
-        padding: 1.25rem;
-      }
-
-      .blog-item {
-        flex-direction: column;
-        align-items: flex-start;
+      .contact-row {
+        flex-wrap: wrap;
         gap: 0.3rem;
-        padding: 1rem 1.25rem;
       }
 
-      .blog-date {
-        min-width: auto;
-      }
-
-      .timeline {
-        padding-left: 1.5rem;
-        margin-left: 1.2rem;
-      }
-
-      .timeline-item::before {
-        left: -1.9rem;
-      }
-
-      .contact-wrap {
-        gap: 2rem;
-      }
-
-      .social-link {
-        padding: 0.65rem 0.85rem;
-      }
-
-      .contact-form .btn {
+      .contact-kind {
         width: 100%;
-        justify-content: center;
       }
 
-      footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-        padding: 1.5rem 1.25rem;
+      .contact-value {
+        margin-right: 0;
       }
     }
 
-    @media (max-width: 480px) {
-      section {
-        padding: 3rem 1rem;
+    /* ---------- REDUCED MOTION ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
 
-      .hero {
-        min-height: auto;
-        padding-top: 6rem;
-        padding-bottom: 3rem;
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
       }
 
-      .hero-stats {
-        gap: 1.5rem;
-      }
-
-      .stat-num {
-        font-size: 1.8rem;
-      }
-
-      .hero-eyebrow {
-        font-size: 0.65rem;
-      }
-
-      .section-title {
-        font-size: clamp(1.6rem, 6vw, 2rem);
-      }
-
-      .timeline-item {
-        margin-bottom: 2rem;
-      }
-
-      .project-category-title {
-        font-size: 0.9rem;
-      }
-
-      .contact-big {
-        font-size: clamp(1.8rem, 7vw, 2.2rem);
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
+  <a href="#beranda" class="skip-link">Lewati ke konten</a>
 
   <nav>
-    <a href="#hero" class="nav-logo">
-      <img src="logo-symbol.svg" alt="Rafi Akbar"
-        style="height: 48px; width: auto; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.85));">
-    </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#business">Business</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a href="#beranda" class="nav-brand">
+        <img src="logo.svg" alt="Rafi Akbar">
+      </a>
+      <div class="nav-links">
+        <a href="#keahlian">Keahlian</a>
+        <a href="#proses">Proses</a>
+        <a href="#karya">Karya</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak" class="btn btn-primary btn-nav">Mari bicara</a>
+      </div>
+    </div>
   </nav>
 
-  <section class="hero" id="hero">
-    <div class="hero-blob"></div>
-    <div class="hero-blob2"></div>
-    <div class="hero-eyebrow">BASED IN SAMARINDA, KALIMANTAN TIMUR</div>
-    <h1>Halo, saya<br><em>Rafi Akbar.</em></h1>
-    <p class="hero-sub">Solo Founder & AI Automation Enthusiast — membangun bisnis, konten, dan sistem yang bekerja
-      sendiri.</p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">Lihat Project →</a>
-      <a href="#contact" class="btn btn-yellow">Hubungi Saya</a>
+  <header id="beranda">
+    <div class="hero-rings" aria-hidden="true"></div>
+    <div class="hero-stipple" aria-hidden="true"></div>
+    <div class="hero-geo" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="reveal">Iklan yang terukur.<br>Konten yang <em>mengundang</em>.</h1>
+        <p class="hero-sub reveal d1">Saya Rafi Akbar, spesialis Meta Ads dan konten untuk brand kuliner serta UMKM.</p>
+        <div class="hero-actions reveal d2">
+          <a href="#kontak" class="btn btn-primary">Mari bicara</a>
+          <a href="#karya" class="btn btn-ghost">Lihat karya</a>
+        </div>
+      </div>
+      <div class="hero-figure reveal d1">
+        <div class="figure">
+          <img src="assets/hero-barista.jpg" alt="Barista bekerja di balik mesin espresso, suasana kedai kopi">
+        </div>
+        <div class="figure-caption">Fokus: brand kuliner dan UMKM</div>
+      </div>
     </div>
-    <div class="hero-stats">
+  </header>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="facts-grid">
+        <div class="fact reveal">
+          <div class="fact-num">2020</div>
+          <div class="fact-label">Mulai terjun ke pemasaran digital lewat usaha online sendiri</div>
+        </div>
+        <div class="fact reveal d1">
+          <div class="fact-num">2</div>
+          <div class="fact-label">Brand kuliner ditangani langsung, dari ads sampai konten</div>
+        </div>
+        <div class="fact reveal d2">
+          <div class="fact-num">4</div>
+          <div class="fact-label">Lini keahlian: paid ads, konten, website, otomasi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="keahlian" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Yang saya kerjakan</h2>
+        <p class="section-desc reveal d1">Tiga lini utama, saling menyambung: iklan berbayar, konten kreatif, dan sistem
+          yang bikin hasilnya tercatat rapi.</p>
+      </div>
+
+      <div class="bento">
+        <article class="cell-card cell-wide reveal">
+          <div class="cell-wide-inner">
+            <div>
+              <h3 class="cell-title">Meta Ads</h3>
+              <div class="chips">
+                <span class="chip">Ads Manager</span>
+                <span class="chip">Riset kompetitor</span>
+              </div>
+            </div>
+            <div>
+              <p class="cell-body muted">Saya susun campaign dari nol: riset kompetitor, tentukan audience, tulis copy
+                iklan, siapkan kreatif, lalu optimasi harian berdasarkan data. Setiap minggu klien menerima laporan yang
+                jelas, bukan sekadar tangkapan layar dashboard.</p>
+              <div class="chips">
+                <span class="chip">Struktur campaign</span>
+                <span class="chip">Copy iklan</span>
+                <span class="chip">Retargeting</span>
+                <span class="chip">Optimasi harian</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell-card cell-light reveal">
+          <h3 class="cell-title">Konten &amp; desain</h3>
+          <p class="cell-body">Konsep, kalender posting, desain visual, sampai editing video pendek. Saya kerjakan
+            sendiri dari awal hingga siap tayang.</p>
+          <div class="chips">
+            <span class="chip">Canva</span>
+            <span class="chip">Alight Motion</span>
+            <span class="chip">Copywriting</span>
+          </div>
+        </article>
+
+        <article class="cell-card cell-yellow reveal d1">
+          <h3 class="cell-title">Web &amp; otomasi</h3>
+          <p class="cell-body">Landing page untuk campaign, domain dan hosting, sampai automation untuk follow up leads.
+            Bidang AI masih terus saya dalami.</p>
+          <div class="chips">
+            <span class="chip">n8n</span>
+            <span class="chip">Cekat.AI</span>
+            <span class="chip">Landing page</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proses" class="band deep">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Cara saya bekerja</h2>
+        <p class="section-desc reveal d1">Empat tahap yang sama untuk setiap klien, supaya keputusan selalu balik ke
+          angka.</p>
+      </div>
+
       <div>
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Bisnis Aktif</div>
-      </div>
-      <div>
-        <div class="stat-num">5+</div>
-        <div class="stat-label">Tahun Pengalaman</div>
-      </div>
-      <div>
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Ide per Hari</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="about">
-    <div class="section-label">01 — ABOUT</div>
-    <div class="about-grid">
-      <div>
-        <h2 class="section-title">Sedikit tentang saya.</h2>
-        <div class="about-text">
-          <p>Saya <strong>Rafi Akbar</strong>, seorang solo founder yang membangun bisnis dari Samarinda. Saya percaya
-            bahwa satu orang dengan sistem yang tepat bisa melakukan pekerjaan tim.</p>
-          <p>Saat ini saya mengelola beberapa bisnis sekaligus — dari <strong>minimarket</strong>, <strong>marketplace
-              reseller</strong> (CCTV & mesin absensi), hingga <strong>content creation</strong>. Semuanya dibangun
-            sambil terus belajar dan bereksperimen dengan AI & automation.</p>
-          <p>Passion saya ada di persimpangan antara bisnis, teknologi, dan konten — mencari cara agar sistem bisa
-            berjalan lebih efisien dengan lebih sedikit tenaga manual.</p>
+        <div class="step reveal">
+          <h3 class="step-name">Diagnosa</h3>
+          <p class="step-body">Saya baca dulu akun iklan, konten, dan data penjualan yang sudah ada. Dari situ kelihatan
+            di mana budgetnya bocor.</p>
         </div>
-      </div>
-      <div class="about-photo">
-        <div class="photo-placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="12" cy="10" r="3" />
-            <path d="M6 21c0-3.314 2.686-6 6-6s6 2.686 6 6" />
-          </svg>
-          <span style="font-size:0.73rem;letter-spacing:0.06em;color:#555;">FOTO KAMU DI SINI</span>
+        <div class="step reveal">
+          <h3 class="step-name">Strategi</h3>
+          <p class="step-body">Kita sepakati penawaran, pesan utama, audience, dan target yang mau dicapai sebelum satu
+            rupiah pun dibelanjakan.</p>
+        </div>
+        <div class="step reveal">
+          <h3 class="step-name">Eksekusi</h3>
+          <p class="step-body">Produksi kreatif, pasang tracking, lalu jalankan campaign dengan struktur rapi supaya
+            hasilnya mudah dibaca.</p>
+        </div>
+        <div class="step reveal">
+          <h3 class="step-name">Optimasi</h3>
+          <p class="step-body">Yang tidak perform saya matikan, yang menang saya naikkan pelan-pelan. Semua keputusan
+            balik ke data.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider">
+  <section id="karya" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Karya pilihan</h2>
+        <p class="section-desc reveal d1">Beberapa pekerjaan yang paling mewakili cara saya berpikir.</p>
+      </div>
 
-  <section id="skills">
-    <div class="section-label">02 — SKILLS</div>
-    <h2 class="section-title">Apa yang saya kuasai.</h2>
-    <p class="section-desc">Kombinasi skill bisnis, digital, dan teknis yang dikembangkan dari pengalaman langsung di
-      lapangan.</p>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-title">BISNIS & INVESTASI</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Manajemen Bisnis</span>
-          <span class="skill-tag">Strategi Operasional</span>
-          <span class="skill-tag">Investasi</span>
-          <span class="skill-tag">Analisa Saham</span>
+      <!-- TODO: tambahkan angka hasil nyata (penjualan, CTR, ROAS) kalau datanya sudah tersedia -->
+      <article class="work-feature reveal">
+        <div class="work-figure">
+          <div class="figure">
+            <img src="sari-madu-thumbnail.png" alt="Konten promosi Sari Madu Bakery">
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">DIGITAL CONTENT & PAID ADS</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Video Editing</span>
-          <span class="skill-tag">Feed / Carousel</span>
-          <span class="skill-tag">Meta Ads</span>
-          <span class="skill-tag">Google Ads</span>
-          <span class="skill-tag">Copywriting</span>
+        <div>
+          <span class="work-meta">Ads</span>
+          <h3 class="work-title">Sari Madu Bakery</h3>
+          <div class="work-role">Ads Specialist, 2025 hingga sekarang</div>
+          <p class="work-body">Mengelola strategi periklanan digital untuk menjaga arus pesanan tetap hidup, dari riset
+            kreatif sampai optimasi mingguan.</p>
+          <div class="work-metrics">
+            <div>
+              <div class="metric-label">Yang saya ukur</div>
+              <div class="metric-value">Biaya per hasil</div>
+            </div>
+            <div>
+              <div class="metric-label">Yang saya pantau</div>
+              <div class="metric-value">Pesan masuk harian</div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">AI & AUTOMATION</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Vibe Coding</span>
-          <span class="skill-tag">AI Orchestration</span>
-          <span class="skill-tag">LLM</span>
+      </article>
+
+      <!-- TODO: tambahkan angka hasil nyata kalau datanya sudah tersedia -->
+      <article class="work-panel reveal">
+        <div>
+          <span class="work-meta">Konten &amp; KOL</span>
+          <h3 class="work-title">Roomys Cafe &amp; Bakery</h3>
+          <div class="work-role">Social Media, KOL &amp; Meta Ads Specialist, 2024 sampai 2025</div>
+          <p class="work-body">Konten harian untuk kafe, kerja sama KOL lokal, dan iklan Meta untuk promo musiman. Fokus
+            pada keteraturan jadwal posting, bukan sekadar ramai sesaat.</p>
         </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">TOOLS</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Corel Draw</span>
-          <span class="skill-tag">Inkscape</span>
-          <span class="skill-tag">Canva</span>
-          <span class="skill-tag">Google Antigravity</span>
-          <span class="skill-tag">Claude Code</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="work-mark" aria-hidden="true">RB</div>
+      </article>
 
-  <hr class="divider">
-
-  <section id="experience">
-    <div class="section-label">03 — EXPERIENCE</div>
-    <h2 class="section-title">Pengalaman kerja saya.</h2>
-    <p class="section-desc">Riwayat pekerjaan profesional di bidang kreatif dan pemasaran digital.</p>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg></div>
-        <div class="timeline-period">Desember 2025 — Sekarang</div>
-        <div class="timeline-role">Ads Specialist</div>
-        <div class="timeline-company">Sari Madu Bakery</div>
-        <div class="timeline-desc">Mengelola strategi periklanan digital untuk meningkatkan visibilitas dan penjualan
-          brand.</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg></div>
-        <div class="timeline-period">Agustus 2024 — Oktober 2025</div>
-        <div class="timeline-role">Media Content Creator</div>
-        <div class="timeline-company">Roomys Cafe & Bakery</div>
-        <div class="timeline-desc">Membuat dan mengelola konten media sosial untuk keperluan pemasaran dan promosi kafe.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="business">
-    <div class="section-label">04 — ENTREPRENEURSHIP</div>
-    <h2 class="section-title">Perjalanan bisnis mandiri.</h2>
-    <p class="section-desc">Usaha dan inisiatif yang saya bangun dan kelola sendiri dari nol.</p>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
-        <div class="timeline-period">2026 — Sekarang</div>
-        <div class="timeline-role">SaaS Builder (Experimental)</div>
-        <div class="timeline-company">Proyek Mandiri</div>
-        <div class="timeline-desc">Memulai dan mengeksplorasi pengembangan berbagai <em>prototype</em> produk SaaS
-          (seperti Kazana, dll) sebagai eksperimen inovasi digital.</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
-        <div class="timeline-period">Oktober 2025 — Sekarang</div>
-        <div class="timeline-role">Founder</div>
-        <div class="timeline-company">PT. Qubicin.com Situs Estetik</div>
-        <div class="timeline-desc">Mendirikan agensi digital kreatif yang melayani jasa pembuatan <em>website</em>,
-          aplikasi Android, dan pengelolaan media sosial.</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
-        <div class="timeline-period">Mei 2025 — Nov 2025</div>
-        <div class="timeline-role">Founder (F&B)</div>
-        <div class="timeline-company">InginTahu Samarinda</div>
-        <div class="timeline-desc">Merintis bisnis kuliner kaki lima berupa cemilan tahu bakso. Dihentikan (discontinue)
-          untuk mengalokasikan fokus pada bisnis B2B.</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
-        <div class="timeline-period">2023 — Sekarang</div>
-        <div class="timeline-role">Founder & Operator IT</div>
-        <div class="timeline-company">Kuvanto</div>
-        <div class="timeline-desc">Evolusi dari usaha <em>reseller</em>. Berfokus pada penyediaan jasa instalasi CCTV
-          terstruktur, mesin kasir (POS), dan setup jaringan operasional kantor.</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg></div>
-        <div class="timeline-period">2020 — 2023</div>
-        <div class="timeline-role">Independent Seller</div>
-        <div class="timeline-company">Facebook Marketplace</div>
-        <div class="timeline-desc">Mengawali perjalanan bisnis dengan berjualan barang elektronik dan rumah tangga,
-          sebelum akhirnya melakukan <em>pivot</em> ke layanan CCTV pada 2023.</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="education">
-    <div class="section-label">05 — EDUCATION</div>
-    <h2 class="section-title">Pendidikan saya.</h2>
-    <p class="section-desc">Latar belakang akademis dan tempat saya menuntut ilmu.</p>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-            <path d="M6 12v5c3 3 9 3 12 0v-5" />
-          </svg></div>
-        <div class="timeline-period">2018 — 2021</div>
-        <div class="timeline-role">Jurusan Rekayasa Piranti Lunak</div>
-        <div class="timeline-company">SMKN 7 Samarinda</div>
-      </div>
-      <div class="timeline-item">
-        <div
-          class="timeline-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-            <path d="M6 12v5c3 3 9 3 12 0v-5" />
-          </svg></div>
-        <div class="timeline-period">2015 — 2018</div>
-        <div class="timeline-role">Sekolah Menengah Pertama</div>
-        <div class="timeline-company">SMP Negeri 1 Samarinda</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="projects">
-    <div class="section-label">06 — PROJECTS</div>
-    <h2 class="section-title">Yang berhasil saya selesaikan.</h2>
-    <p class="section-desc">Dari konten sampai tools — ini beberapa project yang pernah saya kerjakan.</p>
-    <div class="project-category">
-      <div class="project-category-title">Portofolio Konten</div>
-      <div class="projects-grid">
-        <a href="#" class="project-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg><span class="project-tag">KONTEN</span></div>
-          <div class="project-title">Kopi Xpress Instagram Series</div>
-          <div class="project-desc">Carousel edukatif tentang ilmu kopi, psikologi dopamin, dan waktu optimal minum kopi
-            untuk brand Kopi Xpress.</div>
-          <span class="project-arrow">↗ Lihat Project</span>
+      <div class="work-list">
+        <a href="#" class="work-row">
+          <span class="work-row-kind">Konten</span>
+          <span class="work-row-name">Kopi Xpress Instagram Series</span>
+          <span class="work-row-note">Seri carousel edukatif tentang kopi</span>
         </a>
-        <a href="#" class="project-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-            </svg><span class="project-tag">EBOOK</span></div>
-          <div class="project-title">Hidden Business Models</div>
-          <div class="project-desc">Ebook yang membedah model bisnis tersembunyi perusahaan besar (WhatsApp, Spotify,
-            dll) dan relevansinya untuk UMKM Indonesia.</div>
-          <span class="project-arrow">↗ Lihat Project</span>
+        <a href="#" class="work-row">
+          <span class="work-row-kind">Ebook</span>
+          <span class="work-row-name">Hidden Business Models</span>
+          <span class="work-row-note">Model bisnis tersembunyi untuk UMKM</span>
         </a>
-        <a href="https://www.instagram.com/p/DULGXPRE1is/" target="_blank" class="project-card"
-          style="background-image: linear-gradient(to bottom, rgba(17,17,19,0.7), rgba(17,17,19,0.95)), url('sari-madu-thumbnail.png'); background-size: cover; background-position: center; border-color: var(--blue-dim);">
-          <span class="project-tag" style="background: var(--blue); color: #fff;"><svg width="12" height="12"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" style="margin-right:4px;vertical-align:middle;">
-              <polygon points="23 7 16 12 23 17 23 7" />
-              <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-            </svg>INSTAGRAM REEL</span>
-          <div class="project-title">Sari Madu — Social Media Strategy</div>
-          <div class="project-desc">Dokumentasi perjalanan dan strategi konten digital untuk Sari Madu Bakery. Fokus
-            pada engagement dan brand storytelling.</div>
-          <span class="project-arrow">↗ Tonton di Instagram</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="project-category">
-      <div class="project-category-title">Paid Ads</div>
-      <div class="projects-grid">
-        <a href="#" class="project-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg><span class="project-tag">META ADS</span></div>
-          <div class="project-title">Sari Madu Bakery Campaign</div>
-          <div class="project-desc">Strategi dan eksekusi Meta Ads untuk meningkatkan brand awareness dan penjualan
-            produk selama musim liburan.</div>
-          <span class="project-arrow">↗ Lihat Project</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="project-category">
-      <div class="project-category-title">Coding & Tools</div>
-      <div class="projects-grid">
-        <a href="#" class="project-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg><span class="project-tag">PROTOTYPE</span></div>
-          <div class="project-title">AI Wrapper SaaS — UMKM</div>
-          <div class="project-desc">Konsep SaaS untuk marketplace seller Indonesia dengan integrasi AI untuk otomasi
-            deskripsi produk dan chat.</div>
-          <span class="project-arrow">↗ Lihat Project</span>
-        </a>
-        <a href="#" class="project-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;"><svg width="16" height="16"
-              viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3" />
-              <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-            </svg><span class="project-tag">AUTOMATION</span></div>
-          <div class="project-title">HPP Calculator & Sistem</div>
-          <div class="project-desc">Sistem spreadsheet otomatis untuk kalkulasi HPP, analisis margin, dan daftar harga
-            1.900+ item bisnis kuliner.</div>
-          <span class="project-arrow">↗ Lihat Project</span>
+        <a href="#" class="work-row">
+          <span class="work-row-kind">Web</span>
+          <span class="work-row-name">Landing page &amp; chatbot AI</span>
+          <span class="work-row-note">Halaman promo dengan balas chat otomatis</span>
         </a>
       </div>
     </div>
   </section>
 
-  <hr class="divider">
+  <section id="tentang" class="band deep">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Tentang saya</h2>
+      </div>
+      <p class="about-intro reveal d1">Lulusan SMK Rekayasa Perangkat Lunak yang lebih suka menguji kreatif iklan
+        daripada hanya membuatnya. Saya mulai dari berjualan online sendiri, lalu pindah haluan ke pemasaran digital
+        setelah sadar yang menang bukan yang paling bagus desainnya, tetapi yang paling paham angkanya.</p>
 
-  <section id="blog">
-    <div class="section-label">07 — BLOG</div>
-    <h2 class="section-title">Tulisan terbaru.</h2>
-    <p class="section-desc">Pemikiran tentang bisnis, AI, dan membangun sesuatu dari nol. Baca selengkapnya di Medium.
-    </p>
-    <div id="blog-container">
-      <div class="blog-placeholder">
-        <div style="margin-bottom:0.6rem;font-size:1.4rem;opacity:0.15;">✍</div>
-        <div style="font-weight:500;margin-bottom:0.4rem;color:var(--text);">Medium belum terhubung</div>
-        <div style="font-size:0.82rem;">Isi variabel <code
-            style="background:var(--blue-dim);color:var(--blue);padding:2px 7px;border-radius:4px;font-family:monospace;">MEDIUM_USERNAME</code>
-          di bagian script untuk menampilkan artikel otomatis.</div>
+      <div class="duo reveal">
+        <div>
+          <div class="col-title">Pendidikan</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-period">2015 - 2018</div>
+              <div class="timeline-role">SMPN 1 Samarinda</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-period">2018 - 2021</div>
+              <div class="timeline-role">SMKN 7 Samarinda</div>
+              <div class="timeline-company">Rekayasa Perangkat Lunak</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="col-title">Pengalaman kerja</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-period">Desember 2025 - sekarang</div>
+              <div class="timeline-role">Ads Specialist</div>
+              <div class="timeline-company">Sari Madu Bakery</div>
+              <div class="timeline-desc">Mengelola strategi periklanan digital untuk meningkatkan visibilitas dan
+                penjualan brand.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-period">Agustus 2024 - Oktober 2025</div>
+              <div class="timeline-role">Social Media, KOL &amp; Meta Ads Specialist</div>
+              <div class="timeline-company">Roomys Cafe &amp; Bakery</div>
+              <div class="timeline-desc">Konten media sosial, kerja sama KOL, dan iklan Meta untuk promosi kafe.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-period">2020 - 2024</div>
+              <div class="timeline-role">Wirausaha online</div>
+              <div class="timeline-desc">Menjual produk sendiri dan belajar membaca perilaku pembeli dari data.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider">
-
-  <section id="contact">
-    <div class="section-label">08 — CONTACT</div>
-    <div class="contact-wrap">
-      <div>
-        <h2 class="contact-big">Mari <span>terhubung.</span></h2>
-        <p class="contact-sub">Mau kolaborasi, ngobrolin bisnis, atau sekadar sapa? Reach out lewat platform di bawah
-          ini.</p>
-        <div class="social-links">
-          <a href="https://instagram.com/rafiakbar.digital" target="_blank" class="social-link">
-            <span class="social-platform">Instagram</span>
-            <span>@rafiakbar.digital</span>
+  <section id="kontak" class="band">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="contact-greet reveal">Assalamualaikum,</div>
+          <h2 class="reveal d1">Lagi cari orang yang mau bertanggung jawab sama angkanya?</h2>
+          <p class="section-desc reveal d2">Ceritakan dulu masalah brand kamu. Kalau saya rasa cocok, kita lanjut. Kalau
+            tidak, saya bilang terus terang.</p>
+        </div>
+        <div class="contact-list reveal d1">
+          <a href="https://wa.me/62XXXXXXXXXX" target="_blank" rel="noopener" class="contact-row">
+            <span class="contact-kind">WhatsApp</span>
+            <span class="contact-value">+62 8xx xxxx xxxx</span>
+            <span class="contact-arrow" aria-hidden="true">&#8599;</span>
           </a>
-          <a href="https://wa.me/62XXXXXXXXXX" target="_blank" class="social-link">
-            <span class="social-platform">WhatsApp</span>
-            <span>+62 XXX-XXXX-XXXX</span>
+          <a href="https://instagram.com/rafiakbar.digital" target="_blank" rel="noopener" class="contact-row">
+            <span class="contact-kind">Instagram</span>
+            <span class="contact-value">@rafiakbar.digital</span>
+            <span class="contact-arrow" aria-hidden="true">&#8599;</span>
           </a>
-          <a href="mailto:rafi@email.com" class="social-link">
-            <span class="social-platform">Email</span>
-            <span>rafi@email.com</span>
+          <a href="mailto:rafi@email.com" class="contact-row">
+            <span class="contact-kind">Email</span>
+            <span class="contact-value">rafi@email.com</span>
+            <span class="contact-arrow" aria-hidden="true">&#8599;</span>
           </a>
+          <div class="contact-row">
+            <span class="contact-kind">Lokasi</span>
+            <span class="contact-value">Samarinda</span>
+            <span class="contact-note">Melayani klien dari kota lain</span>
+          </div>
         </div>
-      </div>
-      <div class="contact-form">
-        <div class="form-field">
-          <label>NAMA</label>
-          <input type="text" placeholder="Nama kamu">
-        </div>
-        <div class="form-field">
-          <label>EMAIL</label>
-          <input type="email" placeholder="email@kamu.com">
-        </div>
-        <div class="form-field">
-          <label>PESAN</label>
-          <textarea placeholder="Ceritain sesuatu..."></textarea>
-        </div>
-        <button class="btn btn-primary" style="align-self:flex-start;"
-          onclick="alert('Hubungkan form ini ke Formspree atau backend kamu!')">Kirim Pesan →</button>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2025 Rafi Akbar. All rights reserved.</span>
-    <span>Built with ☕ di Samarinda</span>
+    <div class="wrap foot-inner">
+      <div class="foot-left">
+        <img src="logo-symbol-yellow.svg" alt="">
+        <span>&copy; 2026 Rafi Akbar</span>
+      </div>
+      <a href="https://instagram.com/rafiakbar.digital" target="_blank" rel="noopener">Instagram</a>
+    </div>
   </footer>
 
-  <script>
-    const MEDIUM_USERNAME = '';
-
-    async function loadMediumPosts() {
-      if (!MEDIUM_USERNAME) return;
-      const container = document.getElementById('blog-container');
-      container.innerHTML = '<div class="blog-loading">Memuat artikel...</div>';
-      try {
-        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}&count=5`);
-        const data = await res.json();
-        if (!data.items || !data.items.length) { container.innerHTML = '<div class="blog-loading">Belum ada artikel.</div>'; return; }
-        const list = document.createElement('div');
-        list.className = 'blog-list';
-        data.items.forEach(item => {
-          const date = new Date(item.pubDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-          const a = document.createElement('a');
-          a.href = item.link; a.target = '_blank'; a.className = 'blog-item';
-          a.innerHTML = `<span class="blog-date">${date}</span><span class="blog-title">${item.title}</span><span class="blog-arrow">→</span>`;
-          list.appendChild(a);
-        });
-        container.innerHTML = ''; container.appendChild(list);
-      } catch (e) { container.innerHTML = '<div class="blog-loading">Gagal memuat artikel.</div>'; }
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rafi Akbar",
+      "jobTitle": "Spesialis Meta Ads dan Konten",
+      "url": "https://akurafi.my.id",
+      "sameAs": ["https://instagram.com/rafiakbar.digital"]
     }
-    loadMediumPosts();
+  </script>
 
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : ''; });
-    });
+  <script>
+    (function () {
+      // Reveal on scroll
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+      // Active nav link
+      var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      var sections = document.querySelectorAll('section[id], header[id]');
+      var map = {};
+      navLinks.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+
+      var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          navLinks.forEach(function (l) { l.classList.remove('active'); });
+          var link = map[e.target.id];
+          if (link && !link.classList.contains('btn')) link.classList.add('active');
+        });
+      }, { threshold: 0, rootMargin: '-45% 0px -50% 0px' });
+
+      sections.forEach(function (s) { sectionObserver.observe(s); });
+    })();
   </script>
 </body>
 

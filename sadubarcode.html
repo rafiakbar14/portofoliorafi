@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaduBarcode - Rafi Akbar</title>
+  <meta name="description"
+    content="SaduBarcode, sistem barcode dan katalog produk Sari Madu: 996 SKU, label siap cetak massal, dan dashboard stok, harga, serta kategori.">
+  <meta name="theme-color" content="#150f0b">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SaduBarcode - Rafi Akbar">
+  <meta property="og:description"
+    content="Sistem barcode dan katalog produk untuk 996 SKU Sari Madu: barcode, label cetak massal, dan dashboard harian.">
+  <meta property="og:image" content="assets/sari-madu-barcode-dashboard.png">
+  <meta property="og:locale" content="id_ID">
+  <script>
+    document.documentElement.dataset.theme = localStorage.getItem('rafi-tema') || 'dark';
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232FA3E0'/%3E%3Crect x='17' y='18' width='5' height='28' fill='%230B1B2A'/%3E%3Crect x='26' y='18' width='3' height='28' fill='%230B1B2A'/%3E%3Crect x='32' y='18' width='7' height='28' fill='%230B1B2A'/%3E%3Crect x='43' y='18' width='4' height='28' fill='%230B1B2A'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #150f0b;
+      --panel: #1d1610;
+      --panel-2: #221a12;
+      --ink: #f4ecdf;
+      --ink-2: rgba(244, 236, 223, .66);
+      --ink-3: rgba(244, 236, 223, .52);
+      --ink-4: rgba(244, 236, 223, .4);
+      --line: rgba(244, 236, 223, .09);
+      --line-strong: rgba(244, 236, 223, .17);
+      --line-hi: rgba(244, 236, 223, .3);
+      --orange: #2fa3e0;
+      --orange-hot: #62c6f2;
+      --orange-text: #62c6f2;
+      --accent-rgb: 47, 163, 224;
+      --blue: #7fd2f5;
+      --logo: #46b4e6;
+      --on-accent: #1b1108;
+      --hdr-bg: rgba(21, 15, 11, .74);
+      --glass-grad: linear-gradient(180deg,
+          rgba(244, 236, 223, .08) 0%,
+          rgba(244, 236, 223, .028) 46%,
+          rgba(21, 15, 11, .32) 100%);
+      --glass-line: rgba(244, 236, 223, .13);
+      --glass-hi: rgba(255, 243, 222, .13);
+      --glass-sh: 0 26px 60px -30px rgba(0, 0, 0, .65);
+      --ease: cubic-bezier(.25, .8, .25, 1);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      --wrap: 1180px;
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg: #eef4f9;
+      --panel: #ffffff;
+      --panel-2: #e6eff7;
+      --ink: #0f2233;
+      --ink-2: rgba(15, 34, 51, .72);
+      --ink-3: rgba(15, 34, 51, .56);
+      --ink-4: rgba(15, 34, 51, .42);
+      --line: rgba(15, 34, 51, .1);
+      --line-strong: rgba(15, 34, 51, .18);
+      --line-hi: rgba(15, 34, 51, .32);
+      --orange: #0b7fc4;
+      --orange-hot: #0a6ba3;
+      --orange-text: #0a6ba3;
+      --accent-rgb: 11, 127, 196;
+      --on-accent: #ffffff;
+      --blue: #0b7fc4;
+      --logo: #0b6fae;
+      --hdr-bg: rgba(238, 244, 249, .82);
+      --glass-grad: linear-gradient(180deg,
+          rgba(255, 255, 255, .92) 0%,
+          rgba(255, 255, 255, .55) 46%,
+          rgba(15, 34, 51, .06) 100%);
+      --glass-line: rgba(15, 34, 51, .12);
+      --glass-hi: rgba(255, 255, 255, .9);
+      --glass-sh: 0 26px 60px -30px rgba(11, 80, 130, .28);
+      color-scheme: light;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16.5px;
+      line-height: 1.75;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      pointer-events: none;
+      opacity: .022;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      background: var(--orange);
+      color: var(--on-accent);
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--wrap);
+      margin-inline: auto;
+      padding-inline: clamp(20px, 4vw, 40px);
+    }
+
+    /* ---------- Header ---------- */
+    .hdr {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--hdr-bg);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hdr-in {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      height: 64px;
+    }
+
+    .brand-mark {
+      display: block;
+      height: 30px;
+      aspect-ratio: 961 / 268;
+      background-color: var(--logo);
+      -webkit-mask: url("assets/rafi-akbar-wordmark.png") no-repeat center / contain;
+      mask: url("assets/rafi-akbar-wordmark.png") no-repeat center / contain;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 3px;
+      transition: color .25s var(--ease), border-color .25s var(--ease);
+    }
+
+    .back-link .ph {
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .theme-btn {
+      width: 38px;
+      height: 38px;
+      flex: none;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      color: var(--ink-2);
+      font-size: 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+    }
+
+    .theme-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: rotate(-14deg);
+    }
+
+    .theme-btn .ph-moon-stars,
+    [data-theme="light"] .theme-btn .ph-sun {
+      display: none;
+    }
+
+    [data-theme="light"] .theme-btn .ph-moon-stars {
+      display: inline;
+    }
+
+    /* ---------- Tombol ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1;
+      padding: 14px 24px;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    }
+
+    .btn .ph {
+      font-size: 16px;
+      transition: transform .25s var(--ease-out);
+    }
+
+    .btn:hover .ph {
+      transform: translateX(3px);
+    }
+
+    .btn-accent {
+      background: var(--orange);
+      color: var(--on-accent);
+    }
+
+    .btn-accent:hover {
+      background: var(--orange-hot);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -12px rgba(var(--accent-rgb), .5);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    .quiet-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 3px;
+      transition: color .25s var(--ease), border-color .25s var(--ease);
+    }
+
+    .quiet-link .ph {
+      font-size: 14px;
+    }
+
+    .quiet-link:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    /* ---------- Kepala halaman ---------- */
+    .page-head {
+      position: relative;
+      padding: clamp(48px, 8vw, 96px) 0 clamp(28px, 4vw, 44px);
+      overflow: clip;
+    }
+
+    .page-head::before {
+      content: "";
+      position: absolute;
+      top: -240px;
+      right: -160px;
+      width: 640px;
+      height: 640px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(var(--accent-rgb), .14) 0%,
+          rgba(var(--accent-rgb), .04) 44%,
+          transparent 68%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .kicker::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--blue);
+      opacity: .6;
+    }
+
+    .page-title {
+      position: relative;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-top: 16px;
+      max-width: 20ch;
+    }
+
+    .page-title em {
+      font-style: normal;
+      color: var(--orange-text);
+    }
+
+    .page-lede {
+      position: relative;
+      margin-top: 18px;
+      max-width: 58ch;
+      color: var(--ink-2);
+      font-size: clamp(16px, 1.6vw, 18px);
+    }
+
+    .meta {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .meta span {
+      font-family: "Space Mono", monospace;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      padding: 7px 13px;
+      background: var(--panel);
+    }
+
+    .meta span.accent {
+      color: var(--orange-text);
+      border-color: rgba(var(--accent-rgb), .35);
+      background: rgba(var(--accent-rgb), .08);
+    }
+
+    /* ---------- Tangkapan layar ---------- */
+    .shot {
+      border: 1px solid var(--line-strong);
+      border-radius: 20px;
+      padding: clamp(12px, 2vw, 20px);
+      background: var(--panel);
+      margin-top: clamp(24px, 4vw, 40px);
+    }
+
+    .shot img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .shot figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    .shot figcaption i {
+      font-style: normal;
+      color: var(--orange-text);
+    }
+
+    /* ---------- Fitur ---------- */
+    .sec {
+      padding: clamp(56px, 8vw, 96px) 0;
+    }
+
+    .sec-alt {
+      background: rgba(var(--accent-rgb), .03);
+      border-block: 1px solid var(--line);
+    }
+
+    .sec-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-top: 14px;
+      max-width: 22ch;
+    }
+
+    .sec-title em {
+      font-style: normal;
+      color: var(--orange-text);
+    }
+
+    .sec-lede {
+      margin-top: 12px;
+      max-width: 56ch;
+      color: var(--ink-2);
+    }
+
+    .feats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: clamp(32px, 5vw, 48px);
+    }
+
+    .feat {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: clamp(22px, 3vw, 30px);
+      transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+    }
+
+    .feat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(var(--accent-rgb), .4);
+      background: var(--panel-2);
+    }
+
+    .feat-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(var(--accent-rgb), .1);
+      border: 1px solid rgba(var(--accent-rgb), .22);
+      color: var(--orange-text);
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .feat h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -.01em;
+      margin-bottom: 7px;
+    }
+
+    .feat p {
+      color: var(--ink-2);
+      font-size: 14.8px;
+      line-height: 1.7;
+    }
+
+    /* ---------- Alur ---------- */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: clamp(32px, 5vw, 48px);
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 22px 26px;
+      background: var(--panel);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: block;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .16em;
+      color: var(--orange-text);
+      margin-bottom: 10px;
+    }
+
+    .step h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 10vw, 112px);
+    }
+
+    .cta-panel {
+      position: relative;
+      border-radius: 26px;
+      padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
+      text-align: center;
+      overflow: clip;
+      background: var(--glass-grad);
+      -webkit-backdrop-filter: blur(12px) saturate(125%);
+      backdrop-filter: blur(12px) saturate(125%);
+      border: 1px solid var(--glass-line);
+      box-shadow: inset 0 1px 0 var(--glass-hi), var(--glass-sh);
+    }
+
+    .cta-panel .sec-title,
+    .cta-panel .sec-lede {
+      max-width: none;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+    }
+
+    .foot-in {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px 24px;
+      font-family: "Space Mono", monospace;
+      font-size: 11.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    .foot-in a {
+      color: var(--ink-2);
+      transition: color .25s var(--ease);
+    }
+
+    .foot-in a:hover {
+      color: var(--blue);
+    }
+
+    /* ---------- Reveal ---------- */
+    .rv {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      .hdr,
+      .cta-panel {
+        background: var(--panel);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .back-link span {
+        display: none;
+      }
+
+      .feats {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .page-title {
+        font-size: clamp(32px, 9.5vw, 44px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .rv {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="brand" href="index.html" aria-label="Rafi Akbar, beranda">
+        <span class="brand-mark" role="img" aria-label="Rafi Akbar"></span>
+      </a>
+      <a class="back-link" href="index.html#proyek">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+        <span>Kembali ke beranda</span>
+      </a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Ganti mode warna">
+        <i class="ph ph-sun" aria-hidden="true"></i>
+        <i class="ph ph-moon-stars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="kicker">Proyek / SaduBarcode</span>
+        <h1 class="page-title">Satu sistem untuk barcode, label, dan <em>996 SKU</em>.</h1>
+        <p class="page-lede">
+          SaduBarcode adalah sistem internal Sari Madu Bakery. Produk, harga, dan label dikelola
+          dari satu sumber data, supaya produksi dan operasional harian tidak saling tertukar.
+        </p>
+        <div class="meta">
+          <span class="accent">Web, Data</span>
+          <span>Sari Madu Bakery</span>
+          <span>996 SKU</span>
+          <span>Des 2025 - sekarang</span>
+        </div>
+
+        <figure class="shot rv">
+          <img src="assets/sari-madu-barcode-dashboard.png"
+            alt="Tampilan SaduBarcode: dashboard katalog produk, harga, dan kategori">
+          <figcaption>
+            <span>Dashboard SaduBarcode</span>
+            <i>Web, Data</i>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sec sec-alt" id="fitur">
+      <div class="wrap">
+        <span class="kicker">Fitur</span>
+        <h2 class="sec-title">Yang bisa dilakukan <em>SaduBarcode</em></h2>
+        <p class="sec-lede">
+          Semua fitur berangkat dari satu masalah: ratusan SKU yang harus tetap rapi
+          saat produksi, harga, dan label berubah setiap hari.
+        </p>
+
+        <div class="feats">
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-barcode" aria-hidden="true"></i></span>
+            <h3>Pembuat barcode</h3>
+            <p>
+              Setiap SKU punya barcode sendiri yang dibuat dari data produk, jadi kode
+              dan nama tidak pernah tertukar.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-printer" aria-hidden="true"></i></span>
+            <h3>Cetak label massal</h3>
+            <p>
+              Label siap cetak untuk banyak produk sekaligus, dengan format dan ukuran
+              yang konsisten dengan identitas brand.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
+            <h3>Katalog 996 SKU</h3>
+            <p>
+              Nama produk, kategori, harga, dan kode tersimpan rapi. Pencarian cepat,
+              tidak perlu membuka file lama satu per satu.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span>
+            <h3>Dashboard harian</h3>
+            <p>
+              Ringkasan stok, harga, dan kategori untuk keputusan harian: apa yang
+              menipis dan apa yang baru berubah.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="alur">
+      <div class="wrap">
+        <span class="kicker">Alur kerja</span>
+        <h2 class="sec-title">Dari data produk sampai label <em>tertempel</em></h2>
+        <div class="flow">
+          <article class="step rv">
+            <h3>Daftar SKU</h3>
+            <p>Produk dan kategori dimasukkan sekali, jadi sumber data tunggal.</p>
+          </article>
+          <article class="step rv">
+            <h3>Generate barcode</h3>
+            <p>Kode dibuat otomatis mengikuti data SKU yang sudah ada.</p>
+          </article>
+          <article class="step rv">
+            <h3>Cetak label</h3>
+            <p>Label dicetak massal dalam satu batch, siap ditempel.</p>
+          </article>
+          <article class="step rv">
+            <h3>Pantau dashboard</h3>
+            <p>Stok, harga, dan kategori terlihat di satu layar yang sama.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-panel rv">
+          <h2 class="sec-title">Butuh sistem serupa untuk <em>katalogmu</em>?</h2>
+          <p class="sec-lede">
+            Ceritakan jumlah SKU dan alur kerjamu. Saya baca, kasih pandangan jujur,
+            dan usul alur yang realistis.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-accent" href="mailto:halo@rafiakbar.com">
+              halo@rafiakbar.com
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="quiet-link" href="index.html#proyek">
+              Lihat proyek lain
+              <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-in">
+      <span>&copy; <span id="year"></span> Rafi Akbar</span>
+      <a href="index.html">rafiakbar</a>
+    </div>
+  </footer>
+
+  <script>
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    const themeBtn = document.getElementById('themeBtn');
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const paintTheme = t => {
+      document.documentElement.dataset.theme = t;
+      themeMeta.setAttribute('content', t === 'light' ? '#eef4f9' : '#150f0b');
+      themeBtn.setAttribute('aria-label', t === 'light' ? 'Nyalakan mode gelap' : 'Nyalakan mode terang');
+    };
+    paintTheme(document.documentElement.dataset.theme || 'dark');
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('rafi-tema', next);
+      paintTheme(next);
+    });
+  </script>
+</body>
+
+</html>

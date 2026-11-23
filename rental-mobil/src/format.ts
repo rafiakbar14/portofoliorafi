@@ -1,0 +1,10 @@
+export const money = (value: number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value);
+export const compactMoney = (value: number) => Math.abs(value) >= 1_000_000 ? `Rp${new Intl.NumberFormat('id-ID', { maximumFractionDigits: 1 }).format(value / 1_000_000)} jt` : money(value);
+export const dateLabel = (iso: string, options: Intl.DateTimeFormatOptions = {}) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', timeZone: 'Asia/Jakarta', ...options }).format(new Date(iso));
+export const timeLabel = (iso: string) => new Intl.DateTimeFormat('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta' }).format(new Date(iso));
+export const toInput = (iso: string) => new Date(new Date(iso).getTime() + 7 * 3_600_000).toISOString().slice(0, 16);
+export const fromInput = (input: string) => new Date(`${input}:00+07:00`).toISOString();
+export const dayKey = (iso: string) => toInput(iso).slice(0, 10);
+export const plusHours = (iso: string, hours: number) => new Date(new Date(iso).getTime() + hours * 3_600_000).toISOString();
+export const uid = () => crypto.randomUUID();
+export const statusLabels: Record<string, string> = { draft: 'Draft', confirmed: 'Terjadwal', active: 'Sedang disewa', completed: 'Selesai', cancelled: 'Dibatalkan', ready: 'Siap jalan', maintenance: 'Perawatan', inactive: 'Nonaktif', available: 'Tersedia', open: 'Belum dibayar', partial: 'Dibayar sebagian', paid: 'Lunas', void: 'Dibatalkan', overdue: 'Terlambat', reserved: 'Dipesan', verified: 'Terverifikasi', unverified: 'Belum diverifikasi' };

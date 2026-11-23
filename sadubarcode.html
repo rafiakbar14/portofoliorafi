@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SaduBarcode - Rafi Akbar</title>
   <meta name="description"
-    content="SaduBarcode, sistem barcode dan katalog produk Sari Madu: 996 SKU, label siap cetak massal, dan dashboard stok, harga, serta kategori.">
+    content="SaduBarcode mengelola 996 SKU Sari Madu: katalog produk, impor Excel, desain dan cetak label, pencatatan produksi, serta verifikasi distribusi dengan barcode.">
   <meta name="theme-color" content="#150f0b">
   <meta property="og:type" content="article">
   <meta property="og:title" content="SaduBarcode - Rafi Akbar">
   <meta property="og:description"
-    content="Sistem barcode dan katalog produk untuk 996 SKU Sari Madu: barcode, label cetak massal, dan dashboard harian.">
-  <meta property="og:image" content="assets/sari-madu-barcode-dashboard.png">
+    content="Sistem operasional produk untuk 996 SKU Sari Madu: katalog, impor Excel, desain label, produksi, dan verifikasi distribusi.">
+  <meta property="og:image" content="assets/sadubarcode-ui-katalog.png">
   <meta property="og:locale" content="id_ID">
   <script>
     document.documentElement.dataset.theme = localStorage.getItem('rafi-tema') || 'dark';
@@ -502,6 +502,47 @@
       line-height: 1.7;
     }
 
+    /* ---------- Screenshot UI ---------- */
+    .ui-shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 22px;
+      margin-top: clamp(32px, 5vw, 48px);
+    }
+
+    .ui-shot {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+    }
+
+    .ui-shot img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ui-shot figcaption {
+      padding: 18px 22px 22px;
+    }
+
+    .ui-shot h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .ui-shot p {
+      margin-top: 7px;
+      max-width: 58ch;
+      color: var(--ink-2);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
     /* ---------- Alur ---------- */
     .flow {
       display: grid;
@@ -639,6 +680,11 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .ui-shots {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+      }
+
       .flow {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -690,8 +736,9 @@
         <span class="kicker">Proyek / SaduBarcode</span>
         <h1 class="page-title">Satu sistem untuk barcode, label, dan <em>996 SKU</em>.</h1>
         <p class="page-lede">
-          SaduBarcode adalah sistem internal Sari Madu Bakery. Produk, harga, dan label dikelola
-          dari satu sumber data, supaya produksi dan operasional harian tidak saling tertukar.
+          SaduBarcode adalah sistem internal Sari Madu Bakery untuk mengelola katalog produk,
+          barcode, dan label dari satu sumber data—lalu meneruskan alurnya ke pencatatan produksi
+          dan verifikasi distribusi.
         </p>
         <div class="meta">
           <span class="accent">Web, Data</span>
@@ -701,11 +748,11 @@
         </div>
 
         <figure class="shot rv">
-          <img src="assets/sari-madu-barcode-dashboard.png"
-            alt="Tampilan SaduBarcode: dashboard katalog produk, harga, dan kategori">
+          <img src="assets/sadubarcode-ui-katalog.png"
+            alt="Screenshot antarmuka SaduBarcode: katalog produk, barcode, kategori, dan harga">
           <figcaption>
-            <span>Dashboard SaduBarcode</span>
-            <i>Web, Data</i>
+            <span>Katalog produk SaduBarcode</span>
+            <i>Screenshot UI · data contoh</i>
           </figcaption>
         </figure>
       </div>
@@ -716,17 +763,17 @@
         <span class="kicker">Fitur</span>
         <h2 class="sec-title">Yang bisa dilakukan <em>SaduBarcode</em></h2>
         <p class="sec-lede">
-          Semua fitur berangkat dari satu masalah: ratusan SKU yang harus tetap rapi
-          saat produksi, harga, dan label berubah setiap hari.
+          Dari memperbarui katalog sampai memastikan jumlah barang yang dikirim, tiap langkah
+          memakai data produk dan barcode yang sama.
         </p>
 
         <div class="feats">
           <article class="feat rv">
             <span class="feat-ico"><i class="ph ph-barcode" aria-hidden="true"></i></span>
-            <h3>Pembuat barcode</h3>
+            <h3>Barcode per produk</h3>
             <p>
-              Setiap SKU punya barcode sendiri yang dibuat dari data produk, jadi kode
-              dan nama tidak pernah tertukar.
+              Buat barcode untuk tiap produk dengan format CODE128, CODE39, EAN-13, atau UPC.
+              Riwayat pembuatan membantu operator menelusuri pekerjaan sebelumnya.
             </p>
           </article>
 
@@ -734,8 +781,8 @@
             <span class="feat-ico"><i class="ph ph-printer" aria-hidden="true"></i></span>
             <h3>Cetak label massal</h3>
             <p>
-              Label siap cetak untuk banyak produk sekaligus, dengan format dan ukuran
-              yang konsisten dengan identitas brand.
+              Cetak satu produk atau batch besar, termasuk alur pencocokan nama produk dari file
+              ERP dengan katalog utama sebelum label dicetak.
             </p>
           </article>
 
@@ -743,8 +790,8 @@
             <span class="feat-ico"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
             <h3>Katalog 996 SKU</h3>
             <p>
-              Nama produk, kategori, harga, dan kode tersimpan rapi. Pencarian cepat,
-              tidak perlu membuka file lama satu per satu.
+              Cari dan kelompokkan produk berdasarkan kategori. Data kode, nama, harga, dan masa
+              simpan tersimpan sebagai rujukan operasional.
             </p>
           </article>
 
@@ -752,10 +799,124 @@
             <span class="feat-ico"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span>
             <h3>Dashboard harian</h3>
             <p>
-              Ringkasan stok, harga, dan kategori untuk keputusan harian: apa yang
-              menipis dan apa yang baru berubah.
+              Kelola data produk dan lihat ringkasan katalog dari satu tampilan, tanpa berpindah
+              di antara file spreadsheet yang terpisah.
             </p>
           </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-file-xls" aria-hidden="true"></i></span>
+            <h3>Impor dan ekspor Excel</h3>
+            <p>
+              Impor katalog dengan pratinjau kolom dan pemeriksaan duplikasi sebelum data disimpan;
+              ekspor katalog kembali ke spreadsheet.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-ruler" aria-hidden="true"></i></span>
+            <h3>Desain template label</h3>
+            <p>
+              Atur ukuran label dan posisi nama, barcode, harga, serta tanggal. Simpan template
+              untuk menjaga hasil cetak tetap sesuai kebutuhan produk.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-factory" aria-hidden="true"></i></span>
+            <h3>Catatan produksi</h3>
+            <p>
+              Susun rencana produksi, catat jumlah hasil baik dan reject, lakukan verifikasi,
+              lalu cetak label sesuai hasil produksi.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-qr-code" aria-hidden="true"></i></span>
+            <h3>Verifikasi distribusi</h3>
+            <p>
+              Pindai barcode melalui kamera ponsel atau scanner untuk mencatat jumlah terkirim,
+              reject, dan selisih terhadap target.
+            </p>
+          </article>
+
+          <article class="feat rv">
+            <span class="feat-ico"><i class="ph ph-users-three" aria-hidden="true"></i></span>
+            <h3>Tim dan terminal cetak</h3>
+            <p>
+              Atur akses anggota, operator ber-PIN, terminal kerja, kalibrasi posisi cetak,
+              serta riwayat aktivitas operator.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="screenshot-ui">
+      <div class="wrap">
+        <span class="kicker">Tampilan aplikasi</span>
+        <h2 class="sec-title">Fitur yang sama, langsung dari <em>UI SaduBarcode</em></h2>
+        <p class="sec-lede">
+          Screenshot di bawah diambil dari antarmuka aplikasi yang dijalankan secara lokal.
+          Data pada layar merupakan data contoh untuk memperlihatkan alur tiap fitur.
+        </p>
+
+        <div class="ui-shots">
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-impor-excel.png" alt="Pratinjau impor Excel dengan pemetaan kolom dan data produk">
+            <figcaption>
+              <h3>Impor Excel</h3>
+              <p>Periksa pemetaan kolom dan data produk, termasuk harga serta masa simpan, sebelum mengimpor katalog.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-desain-label.png" alt="Editor visual untuk mengatur elemen dan ukuran label produk">
+            <figcaption>
+              <h3>Desain template label</h3>
+              <p>Atur ukuran label dan tata letak nama produk, barcode, harga, serta tanggal dalam editor visual.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-batch-print.png" alt="Dialog Batch Print dengan sumber file ERP, produk master, dan hasil produksi">
+            <figcaption>
+              <h3>Cetak batch</h3>
+              <p>Pilih sumber cetak dari file ERP, produk master, atau hasil produksi untuk menyiapkan label sekaligus.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-rencana-produksi.png" alt="Daftar rencana produksi dengan target, hasil, dan progres">
+            <figcaption>
+              <h3>Rencana produksi</h3>
+              <p>Lihat target, hasil sementara, jumlah produk, dan progres pesanan produksi dalam satu tampilan.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-detail-produksi.png" alt="Detail produksi dengan hasil baik, jumlah reject, dan status verifikasi produk">
+            <figcaption>
+              <h3>Hasil dan verifikasi produksi</h3>
+              <p>Catat hasil baik dan reject per produk, cek selisih dari target, lalu tandai item yang telah diverifikasi.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-verifikasi-distribusi.png" alt="Layar verifikasi distribusi dengan QR scan HP, input scanner USB, dan jumlah terkirim">
+            <figcaption>
+              <h3>Verifikasi distribusi</h3>
+              <p>Gunakan QR untuk membuka scan di HP atau masukkan barcode lewat scanner USB, kemudian pantau jumlah terkirim dan reject.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/sadubarcode-ui-tim-akses.png" alt="Halaman Tim dan Akses untuk mengundang anggota dan mengatur izin">
+            <figcaption>
+              <h3>Tim dan akses</h3>
+              <p>Undang anggota workspace dan atur akses ke pengelolaan produk, label, produksi, distribusi, serta laporan.</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -763,11 +924,11 @@
     <section class="sec" id="alur">
       <div class="wrap">
         <span class="kicker">Alur kerja</span>
-        <h2 class="sec-title">Dari data produk sampai label <em>tertempel</em></h2>
+        <h2 class="sec-title">Dari data produk sampai barang <em>terverifikasi</em></h2>
         <div class="flow">
           <article class="step rv">
-            <h3>Daftar SKU</h3>
-            <p>Produk dan kategori dimasukkan sekali, jadi sumber data tunggal.</p>
+            <h3>Impor dan kelola SKU</h3>
+            <p>Masukkan katalog dari Excel, periksa data, lalu kelola produk dan kategori.</p>
           </article>
           <article class="step rv">
             <h3>Generate barcode</h3>
@@ -778,9 +939,28 @@
             <p>Label dicetak massal dalam satu batch, siap ditempel.</p>
           </article>
           <article class="step rv">
-            <h3>Pantau dashboard</h3>
-            <p>Stok, harga, dan kategori terlihat di satu layar yang sama.</p>
+            <h3>Catat dan verifikasi</h3>
+            <p>Rekam hasil produksi, lalu pindai barang untuk memeriksa jumlah distribusi.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec-alt" id="teknologi">
+      <div class="wrap">
+        <span class="kicker">Implementasi</span>
+        <h2 class="sec-title">Dibangun untuk alur kerja <em>operasional</em></h2>
+        <p class="sec-lede">
+          Aplikasi web full-stack dengan antarmuka React dan TypeScript, API Express,
+          autentikasi pengguna, serta dukungan PWA untuk penggunaan lintas perangkat.
+        </p>
+        <div class="meta" aria-label="Teknologi yang digunakan">
+          <span class="accent">React</span>
+          <span>TypeScript</span>
+          <span>Vite</span>
+          <span>Express</span>
+          <span>PostgreSQL / SQLite</span>
+          <span>PWA</span>
         </div>
       </div>
     </section>
@@ -801,6 +981,10 @@
             <a class="quiet-link" href="index.html#proyek">
               Lihat proyek lain
               <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+            </a>
+            <a class="quiet-link" href="https://github.com/rafiakbar14/BarcodeSadu" target="_blank" rel="noreferrer">
+              Lihat kode sumber
+              <i class="ph ph-github-logo" aria-hidden="true"></i>
             </a>
           </div>
         </div>

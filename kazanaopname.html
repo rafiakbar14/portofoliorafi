@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KazanaOpname - Rafi Akbar</title>
   <meta name="description"
-    content="KazanaOpname, aplikasi stok opname: hitung stok fisik, cocokkan dengan data sistem, dan simpan laporan selisihnya.">
+    content="KazanaOpname mengelola sesi stok opname per cabang, pencatatan hitung fisik, bukti foto, hasil selisih, dan ekspor laporan.">
   <meta name="theme-color" content="#150f0b">
   <meta property="og:type" content="article">
   <meta property="og:title" content="KazanaOpname - Rafi Akbar">
   <meta property="og:description"
-    content="Aplikasi stok opname: hitung stok fisik, cocokkan dengan data sistem, dan simpan laporan selisihnya.">
+    content="Sesi stok opname per cabang, hitung fisik dengan bukti foto, tinjau hasil, dan ekspor laporan.">
   <meta property="og:locale" content="id_ID">
   <script>
     document.documentElement.dataset.theme = localStorage.getItem('rafi-tema') || 'dark';
@@ -469,6 +469,78 @@
       line-height: 1.7;
     }
 
+    /* ---------- Tangkapan layar ---------- */
+    .shot {
+      border: 1px solid var(--line-strong);
+      border-radius: 20px;
+      padding: clamp(12px, 2vw, 20px);
+      background: var(--panel);
+      margin-top: clamp(24px, 4vw, 40px);
+    }
+
+    .shot img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .shot figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    .shot figcaption i {
+      font-style: normal;
+      color: var(--orange-text);
+    }
+
+    .ui-shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 22px;
+      margin-top: clamp(32px, 5vw, 48px);
+    }
+
+    .ui-shot {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+    }
+
+    .ui-shot img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ui-shot figcaption {
+      padding: 18px 22px 22px;
+    }
+
+    .ui-shot h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .ui-shot p {
+      margin-top: 7px;
+      max-width: 58ch;
+      color: var(--ink-2);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
     /* ---------- Alur ---------- */
     .flow {
       display: grid;
@@ -606,6 +678,15 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .ui-shots {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .shot figcaption {
+        flex-direction: column;
+      }
+
       .flow {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -655,16 +736,25 @@
     <section class="page-head">
       <div class="wrap">
         <span class="kicker">Proyek / KazanaOpname</span>
-        <h1 class="page-title">Stok fisik dan data sistem, <em>satu angka</em>.</h1>
+        <h1 class="page-title">Hitung stok per cabang, <em>tinjau hasilnya</em>.</h1>
         <p class="page-lede">
-          KazanaOpname adalah aplikasi stok opname. Tim menghitung barang di lapangan,
-          sistem mencatat selisihnya, dan laporan keluar tanpa rekap manual.
+          KazanaOpname membantu tim membuat sesi per cabang, mencatat hitungan fisik per produk,
+          menambahkan foto bukti, lalu meninjau perbedaan terhadap stok yang tercatat di aplikasi ini.
         </p>
         <div class="meta">
           <span class="accent">Web App</span>
           <span>Stok opname</span>
-          <span>Hitung &amp; rekonsiliasi</span>
+          <span>Hitung fisik &amp; laporan</span>
         </div>
+
+        <figure class="shot rv">
+          <img src="assets/kazanaopname-ui-hitung-fisik.png"
+            alt="Screenshot KazanaOpname: sesi berjalan, progres hitung, daftar produk, input stok fisik, dan detail item">
+          <figcaption>
+            <span>Penghitungan stok fisik per produk</span>
+            <i>Screenshot UI · data contoh</i>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -673,47 +763,113 @@
         <span class="kicker">Fitur</span>
         <h2 class="sec-title">Yang bisa dilakukan <em>KazanaOpname</em></h2>
         <p class="sec-lede">
-          Dibangun untuk opname rutin: hitungan cepat, selisih kelihatan,
-          dan hasilnya bisa ditinjau lagi kapan pun.
+          Dibangun untuk opname rutin: catat hitungan fisik per cabang, tinjau selisih setelah sesi selesai,
+          dan simpan hasilnya untuk ditinjau kembali.
         </p>
 
         <div class="feats">
           <article class="feat rv">
             <span class="feat-ico"><i class="ph ph-clipboard-text" aria-hidden="true"></i></span>
-            <h3>Sesi opname</h3>
+            <h3>Sesi per cabang</h3>
             <p>
-              Buka sesi hitung per area atau gudang. Progress terlihat jelas
-              sampai semua item selesai dihitung.
+              Buat sesi untuk satu cabang, tetapkan petugas, lalu pantau jumlah
+              produk yang sudah dan belum dihitung.
             </p>
           </article>
 
           <article class="feat rv">
-            <span class="feat-ico"><i class="ph ph-qr-code" aria-hidden="true"></i></span>
-            <h3>Hitung cepat</h3>
+            <span class="feat-ico"><i class="ph ph-calculator" aria-hidden="true"></i></span>
+            <h3>Hitung fisik dan foto</h3>
             <p>
-              Jumlah fisik diinput per SKU, bisa lewat scan. Tidak ada lagi
-              rekap di kertas yang harus disalin ulang.
+              Catat jumlah per SKU langsung di daftar. Petugas dapat menambahkan
+              foto produk atau kondisi barang sebagai bukti opname.
             </p>
           </article>
 
           <article class="feat rv">
             <span class="feat-ico"><i class="ph ph-scales" aria-hidden="true"></i></span>
-            <h3>Rekonsiliasi selisih</h3>
+            <h3>Tinjau hasil setelah selesai</h3>
             <p>
-              Stok sistem dan stok fisik dibandingkan otomatis. Item yang
-              selisih langsung ditandai supaya mudah dicek.
+              Setelah sesi ditutup, lihat stok fisik, stok tercatat di KazanaOpname,
+              dan nilai selisih untuk setiap produk.
             </p>
           </article>
 
           <article class="feat rv">
             <span class="feat-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>
-            <h3>Laporan &amp; riwayat</h3>
+            <h3>Produk, cabang, dan akses</h3>
             <p>
-              Hasil setiap sesi tersimpan rapi. Laporan opname bisa ditinjau
-              ulang tanpa mencari berkas lama.
+              Kelola katalog beserta stok tiap cabang, impor atau ekspor data produk,
+              dan atur izin pengguna sesuai tugasnya.
             </p>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <section class="sec" id="screenshot-ui">
+      <div class="wrap">
+        <span class="kicker">Tampilan aplikasi</span>
+        <h2 class="sec-title">Fitur yang sama, langsung dari <em>UI KazanaOpname</em></h2>
+        <p class="sec-lede">
+          Screenshot diambil dari aplikasi yang dijalankan secara lokal. Data di layar merupakan
+          data contoh; alur dan komponen tampilannya berasal dari codebase KazanaOpname.
+        </p>
+
+        <div class="ui-shots">
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-daftar-sesi.png" alt="Daftar sesi opname dengan status berjalan dan selesai, cabang, petugas, serta tanggal">
+            <figcaption>
+              <h3>Daftar sesi opname</h3>
+              <p>Pantau sesi berjalan dan selesai, cabang yang dihitung, petugas, catatan, serta tanggal mulai dari satu daftar.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-hitung-fisik.png" alt="Sesi opname berjalan dengan progres, input stok fisik per produk, filter, dan panel foto">
+            <figcaption>
+              <h3>Input hitung dan bukti foto</h3>
+              <p>Masukkan stok fisik per produk, cari atau filter daftar, lihat progres, dan tambahkan foto untuk item yang perlu bukti.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-hasil-sesi.png" alt="Sesi selesai menampilkan stok fisik, stok aplikasi, selisih, dan tombol ekspor Excel">
+            <figcaption>
+              <h3>Hasil dan selisih opname</h3>
+              <p>Setelah sesi selesai, tinjau stok fisik dibanding stok yang tercatat di KazanaOpname, lalu ekspor hasil sesi ke Excel.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-produk-cabang.png" alt="Katalog produk dengan SKU, kategori, penempatan cabang, stok, serta impor dan ekspor Excel">
+            <figcaption>
+              <h3>Master produk per cabang</h3>
+              <p>Kelola SKU dan kategori, lihat stok produk per cabang, serta impor katalog atau ekspor data produk melalui Excel.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-cabang.png" alt="Daftar cabang dengan kode, alamat, dan status aktif">
+            <figcaption>
+              <h3>Pengelolaan cabang</h3>
+              <p>Atur cabang yang menjadi cakupan penyimpanan stok. Setiap sesi opname selalu terikat ke satu cabang.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/kazanaopname-ui-hak-akses.png" alt="Daftar akun pengguna dengan peran, jumlah izin, cakupan cabang, dan status akun">
+            <figcaption>
+              <h3>Pengguna dan hak akses</h3>
+              <p>Kelola akun, izin tiap pengguna, dan cakupan cabang. Label peran menjadi template; izin yang menentukan akses sebenarnya.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="sec-lede" style="margin-top:24px">
+          Catatan: KazanaOpname berdiri sendiri dengan data stok per cabangnya sendiri. Datanya tidak tersinkron otomatis dengan sistem Kazana POS.
+        </p>
       </div>
     </section>
 
@@ -724,19 +880,19 @@
         <div class="flow">
           <article class="step rv">
             <h3>Buka sesi</h3>
-            <p>Pilih area atau gudang yang akan dihitung hari ini.</p>
+            <p>Pilih satu cabang, beri judul sesi, lalu tetapkan petugas yang akan menghitung.</p>
           </article>
           <article class="step rv">
             <h3>Hitung fisik</h3>
-            <p>Input jumlah barang per SKU sambil berjalan di lapangan.</p>
+            <p>Catat jumlah fisik untuk tiap produk dan lampirkan foto bila diperlukan.</p>
           </article>
           <article class="step rv">
-            <h3>Cocokkan</h3>
-            <p>Sistem membandingkan dengan stok tercatat dan menandai selisih.</p>
+            <h3>Tinjau hasil</h3>
+            <p>Setelah sesi selesai, bandingkan hitungan fisik dengan stok yang tercatat di aplikasi ini.</p>
           </article>
           <article class="step rv">
             <h3>Simpan laporan</h3>
-            <p>Hasil sesi tersimpan dan siap ditinjau kapan saja.</p>
+            <p>Tinjau riwayat sesi dan unduh hasil hitung dalam format Excel.</p>
           </article>
         </div>
       </div>
@@ -803,3 +959,5 @@
 </body>
 
 </html>
+
+

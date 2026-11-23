@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tata Kerja - Rafi Akbar</title>
   <meta name="description"
-    content="Tata Kerja, aplikasi pembuat dan distribusi SOP dalam satu wadah: susun prosedur, bagikan ke tim, dan jaga versinya tetap terbaru.">
+    content="TataKerja membantu membuat SOP dan KPI dengan AI, mengedit serta meninjau dokumen, dan mendistribusikan prosedur ke Portal Karyawan.">
   <meta name="theme-color" content="#150f0b">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Tata Kerja - Rafi Akbar">
+  <meta property="og:image" content="assets/tatakerja-ui-generator.png">
   <meta property="og:description"
     content="Aplikasi pembuat dan distribusi SOP: susun prosedur, bagikan ke tim, dan jaga versinya tetap terbaru.">
   <meta property="og:locale" content="id_ID">
@@ -469,6 +470,78 @@
       line-height: 1.7;
     }
 
+    /* ---------- Tangkapan layar ---------- */
+    .shot {
+      border: 1px solid var(--line-strong);
+      border-radius: 20px;
+      padding: clamp(12px, 2vw, 20px);
+      background: var(--panel);
+      margin-top: clamp(24px, 4vw, 40px);
+    }
+
+    .shot img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .shot figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    .shot figcaption i {
+      font-style: normal;
+      color: var(--orange-text);
+    }
+
+    .ui-shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 22px;
+      margin-top: clamp(32px, 5vw, 48px);
+    }
+
+    .ui-shot {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+    }
+
+    .ui-shot img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ui-shot figcaption {
+      padding: 18px 22px 22px;
+    }
+
+    .ui-shot h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .ui-shot p {
+      margin-top: 7px;
+      max-width: 58ch;
+      color: var(--ink-2);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
     /* ---------- Alur ---------- */
     .flow {
       display: grid;
@@ -606,6 +679,15 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .ui-shots {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .shot figcaption {
+        flex-direction: column;
+      }
+
       .flow {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -655,17 +737,26 @@
     <section class="page-head">
       <div class="wrap">
         <span class="kicker">Proyek / Tata Kerja</span>
-        <h1 class="page-title">SOP tersimpan, <em>dipakai, dan diperbarui</em>.</h1>
+        <h1 class="page-title">Dari proses harian menjadi <em>SOP siap dipakai</em>.</h1>
         <p class="page-lede">
-          Tata Kerja adalah aplikasi pembuat dan distribusi SOP dalam satu wadah.
-          Prosedur disusun sekali, dibagikan ke tim yang tepat, dan versinya selalu jelas.
+          TataKerja membantu tim menyusun SOP dan KPI, menyunting dokumen dalam editor,
+          meninjau perubahan bersama, lalu membagikan prosedur lewat Portal Karyawan.
         </p>
         <div class="meta">
           <span class="accent">Web App</span>
-          <span>SOP</span>
-          <span>Distribusi</span>
-          <span>Versi &amp; riwayat</span>
+          <span>SOP &amp; KPI</span>
+          <span>AI Generator</span>
+          <span>Portal Karyawan</span>
         </div>
+
+        <figure class="shot rv">
+          <img src="assets/tatakerja-ui-generator.png"
+            alt="TataKerja demo: pilihan memulai SOP dari galeri template, pengetahuan AI, tulisan bebas, atau wawancara AI">
+          <figcaption>
+            <span>Empat cara memulai dokumen SOP</span>
+            <i>Screenshot UI · demo publik</i>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -674,47 +765,105 @@
         <span class="kicker">Fitur</span>
         <h2 class="sec-title">Yang bisa dilakukan <em>Tata Kerja</em></h2>
         <p class="sec-lede">
-          Dibuat untuk SOP yang benar-benar dipakai, bukan dokumen yang
-          tersimpan lalu terlupakan.
+          Alur kerja mencakup pembuatan draf dengan AI, penyuntingan, evaluasi KPI,
+          kolaborasi tim, ekspor dokumen, dan distribusi ke karyawan.
         </p>
 
         <div class="feats">
           <article class="feat rv">
-            <span class="feat-ico"><i class="ph ph-list-checks" aria-hidden="true"></i></span>
-            <h3>Penyusun SOP</h3>
+            <span class="feat-ico"><i class="ph ph-sparkle" aria-hidden="true"></i></span>
+            <h3>Generator SOP dengan AI</h3>
             <p>
-              Langkah prosedur disusun dengan struktur yang sama untuk semua
-              dokumen, jadi mudah dibaca dan diikuti.
+              Mulai dari galeri 136+ template, pilihan industri dan proses, deskripsi bebas,
+              wawancara terpandu, atau unggah dokumen lama.
             </p>
           </article>
 
           <article class="feat rv">
-            <span class="feat-ico"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></span>
-            <h3>Publikasi &amp; distribusi</h3>
+            <span class="feat-ico"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span>
+            <h3>KPI yang terkait dengan SOP</h3>
             <p>
-              SOP dibagikan ke tim atau divisi yang tepat, bisa diakses dari
-              satu tautan tanpa mengirim file berulang.
+              Susun indikator dengan formula, target, frekuensi, dan penanggung jawab.
+              Validasi SMART membantu meninjau kualitas KPI.
             </p>
           </article>
 
           <article class="feat rv">
-            <span class="feat-ico"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i></span>
-            <h3>Versi &amp; riwayat</h3>
+            <span class="feat-ico"><i class="ph ph-pencil-line" aria-hidden="true"></i></span>
+            <h3>Editor dan ekspor</h3>
             <p>
-              Setiap perubahan tercatat. Tim selalu memakai versi terbaru,
-              dan versi lama tetap bisa ditinjau.
+              Rapikan isi di editor WYSIWYG, minta AI memperjelas atau meringkas bagian tertentu,
+              lalu ekspor dokumen ke DOCX atau PDF.
             </p>
           </article>
 
           <article class="feat rv">
-            <span class="feat-ico"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
-            <h3>Pencarian cepat</h3>
+            <span class="feat-ico"><i class="ph ph-users-three" aria-hidden="true"></i></span>
+            <h3>Review dan Portal Karyawan</h3>
             <p>
-              Temukan SOP berdasarkan nama, divisi, atau kata kunci tanpa
-              membuka folder satu per satu.
+              Kolaborasikan komentar dan revisi, atur hak akses, lalu publikasikan SOP
+              beserta tes pemahaman ke portal tim.
             </p>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <section class="sec" id="screenshot-ui">
+      <div class="wrap">
+        <span class="kicker">Tampilan aplikasi</span>
+        <h2 class="sec-title">Mulai menyusun SOP dengan <em>cara yang sesuai</em></h2>
+        <p class="sec-lede">
+          Screenshot diambil dari alur demo publik TataKerja yang dijalankan lokal.
+          Layar dan komponennya berasal dari codebase; isi di layar merupakan contoh.
+        </p>
+
+        <div class="ui-shots">
+          <figure class="ui-shot rv">
+            <img src="assets/tatakerja-ui-template.png" alt="Galeri template TataKerja dengan pencarian SOP berdasarkan proses, departemen, dan bidang usaha">
+            <figcaption>
+              <h3>Galeri template SOP</h3>
+              <p>Cari dari lebih dari 136 contoh proses, lalu pilih template yang paling dekat dengan kebutuhan tim.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/tatakerja-ui-pilih-industri.png" alt="Pemilihan industri di generator AI TataKerja untuk menyesuaikan struktur SOP">
+            <figcaption>
+              <h3>Generator terpandu</h3>
+              <p>Pilih industri, departemen, dan proses. TataKerja memakai konteks tersebut untuk menyiapkan draf SOP.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/tatakerja-ui-konteks-ai.png" alt="Form konteks tambahan berisi jumlah staf, sistem shift, peralatan, dan standar acuan">
+            <figcaption>
+              <h3>Konteks dan standar</h3>
+              <p>Tambahkan jumlah staf, pola shift, peralatan, dan standar acuan agar draf lebih sesuai dengan operasi.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/tatakerja-ui-tulis-bebas.png" alt="Form TataKerja untuk menulis nama proses dan menjelaskan alur kerja dengan bahasa sehari-hari">
+            <figcaption>
+              <h3>Tulis bebas</h3>
+              <p>Jelaskan proses sehari-hari dengan kata sendiri; AI membantu menyusunnya menjadi SOP yang terstruktur.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="ui-shot rv">
+            <img src="assets/tatakerja-ui-wawancara-ai.png" alt="Tampilan wawancara terpandu AI yang mengajukan pertanyaan satu per satu tentang alur kerja">
+            <figcaption>
+              <h3>Wawancara terpandu</h3>
+              <p>Jawab pertanyaan langkah demi langkah untuk menggali pemicu proses, urutan kerja, pengecualian, dan persetujuan.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="sec-lede" style="margin-top:24px">
+          Catatan: demo publik memperlihatkan alur pengisian dan mengarahkan pengguna untuk masuk atau mendaftar sebelum hasil dibuat dan disimpan.
+        </p>
       </div>
     </section>
 
@@ -725,19 +874,19 @@
         <div class="flow">
           <article class="step rv">
             <h3>Tulis</h3>
-            <p>Langkah prosedur disusun mengikuti template yang sama.</p>
+            <p>Pilih template, alur AI terpandu, wawancara, atau jelaskan proses dengan tulisan sendiri.</p>
           </article>
           <article class="step rv">
             <h3>Tinjau</h3>
-            <p>Isi diperiksa sebelum dipublikasikan ke tim.</p>
+            <p>Sunting draf di editor, tinjau bersama tim, dan lengkapi KPI jika diperlukan.</p>
           </article>
           <article class="step rv">
             <h3>Publikasi</h3>
-            <p>SOP dibagikan ke divisi yang membutuhkannya.</p>
+            <p>Ekspor DOCX atau PDF, atau publikasikan SOP ke Portal Karyawan.</p>
           </article>
           <article class="step rv">
             <h3>Perbarui</h3>
-            <p>Perubahan dicatat sebagai versi baru, tetap rapi.</p>
+            <p>Atur revisi dan tes pemahaman agar prosedur lebih mudah diikuti tim.</p>
           </article>
         </div>
       </div>

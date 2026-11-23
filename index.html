@@ -1162,30 +1162,58 @@
       overflow: hidden;
     }
 
-    /* Mock mini: barcode */
-    .mock-barcode {
-      width: min(64%, 240px);
+    .proj-view-sadu {
+      padding: clamp(14px, 2vw, 24px);
     }
 
-    .mock-barcode i {
+    .proj-view-sadu img {
       display: block;
-      height: 96px;
-      background: repeating-linear-gradient(90deg,
-        var(--ink) 0 2px, transparent 2px 7px,
-        var(--ink) 7px 14px, transparent 14px 18px,
-        var(--ink) 18px 19px, transparent 19px 24px);
-      border-radius: 4px;
-      opacity: .85;
+      width: 100%;
+      aspect-ratio: 1.44;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+      transition: transform .45s var(--ease-out);
     }
 
-    .mock-barcode span {
+    .proj-card:hover .proj-view-sadu img,
+    .proj-card:hover .proj-view-kazana img,
+    .proj-card:hover .proj-view-tatakerja img {
+      transform: translateY(-4px);
+    }
+
+    .proj-view-kazana {
+      padding: clamp(14px, 2vw, 24px);
+    }
+
+    .proj-view-kazana img {
       display: block;
-      margin-top: 10px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: .34em;
-      color: var(--ink-2);
-      text-align: center;
+      width: 100%;
+      aspect-ratio: 1.44;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+      transition: transform .45s var(--ease-out);
+    }
+
+    .proj-view-tatakerja {
+      padding: clamp(14px, 2vw, 24px);
+    }
+
+    .proj-view-tatakerja img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.44;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+      transition: transform .45s var(--ease-out);
     }
 
     /* Mock mini: daftar hitung opname */
@@ -1233,109 +1261,6 @@
     .mock-count .diff .qty,
     .mock-count .diff .ph {
       color: var(--orange-text);
-    }
-
-    /* Logo di kartu identitas: tampil utuh, tidak ikut zoom kartu lain */
-    .logo-shot {
-      max-width: min(48%, 180px);
-      max-height: 180px;
-      object-fit: contain;
-    }
-
-    /* Mock mini: timeline video */
-    .mock-motion {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      width: min(80%, 280px);
-    }
-
-    .mock-motion .play {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: var(--orange);
-      color: var(--on-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex: none;
-    }
-
-    .mock-motion .track {
-      flex: 1;
-      display: grid;
-      gap: 6px;
-    }
-
-    .mock-motion .clip {
-      display: block;
-      height: 8px;
-      border-radius: 4px;
-      background: var(--mock-2);
-    }
-
-    .mock-motion .clip.a {
-      width: 100%;
-    }
-
-    .mock-motion .clip.b {
-      width: 72%;
-      background: rgba(var(--accent-rgb), .5);
-    }
-
-    .mock-motion .clip.c {
-      width: 46%;
-    }
-
-    /* Mock mini: daftar langkah SOP */
-    .mock-sop {
-      width: min(62%, 250px);
-      background: var(--mock-1);
-      border: 1px solid var(--line-strong);
-      border-radius: 12px;
-      padding: 16px 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .mock-sop .sop-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .mock-sop .sop-row i {
-      font-style: normal;
-      width: 20px;
-      height: 20px;
-      flex: none;
-      border-radius: 50%;
-      border: 1px solid rgba(var(--accent-rgb), .45);
-      background: rgba(var(--accent-rgb), .12);
-      color: var(--orange-text);
-      font-family: "Space Mono", monospace;
-      font-size: 10px;
-      display: grid;
-      place-items: center;
-    }
-
-    .mock-sop .sop-row span {
-      flex: 1;
-      height: 7px;
-      border-radius: 4px;
-      background: var(--mock-2);
-    }
-
-    .mock-sop .sop-row:nth-child(2) span {
-      width: 78%;
-      flex: none;
-    }
-
-    .mock-sop .sop-row:nth-child(3) span {
-      width: 56%;
-      flex: none;
     }
 
     /* Mock mini: ringkasan harta */
@@ -1441,9 +1366,7 @@
 
     /* Varian lebar: grid rapi, tinggi kartu seragam dalam satu baris */
     .proj-card.v1,
-    .proj-card.v2,
-    .proj-card.v3,
-    .proj-card.v4 {
+    .proj-card.v2 {
       grid-column: span 6;
     }
 
@@ -1592,9 +1515,7 @@
 
     @media (max-width: 1200px) {
       .proj-card.v1,
-      .proj-card.v2,
-      .proj-card.v3,
-      .proj-card.v4 {
+      .proj-card.v2 {
         grid-column: span 12;
       }
     }
@@ -1692,8 +1613,6 @@
 
       .proj-card.v1,
       .proj-card.v2,
-      .proj-card.v3,
-      .proj-card.v4,
       .proj-card.v5,
       .proj-card.v6,
       .proj-card.v7 {
@@ -2081,18 +2000,16 @@
             <div class="proj-info">
               <span class="proj-tag">Web, Data</span>
               <h3>SaduBarcode</h3>
-              <p>Sistem barcode dan katalog produk untuk Sari Madu: 996 SKU dikelola dari satu tempat.</p>
+              <p>Sistem produk dan label untuk 996 SKU, dari impor katalog dan cetak batch hingga pencatatan produksi serta verifikasi distribusi.</p>
               <a class="proj-link" href="sadubarcode.html">
                 Baca fitur lengkap
                 <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
               </a>
               <span class="proj-note">Sari Madu, 996 SKU</span>
             </div>
-            <div class="proj-view" aria-hidden="true">
-              <div class="mock-barcode">
-                <i></i>
-                <span>SKU-0996</span>
-              </div>
+            <div class="proj-view proj-view-sadu">
+              <img src="assets/sadubarcode-ui-katalog.png"
+                alt="Screenshot UI SaduBarcode: katalog 996 produk, barcode, kategori, dan harga" loading="lazy">
             </div>
           </article>
 
@@ -2101,107 +2018,38 @@
             <div class="proj-info">
               <span class="proj-tag">Web App</span>
               <h3>KazanaOpname</h3>
-              <p>Aplikasi stok opname: hitung stok fisik, cocokkan dengan data sistem, lalu simpan laporannya.</p>
+              <p>Aplikasi stok opname per cabang untuk mencatat hitungan fisik dan meninjau selisih setelah sesi selesai.</p>
               <a class="proj-link" href="kazanaopname.html">
                 Baca fitur lengkap
                 <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
               </a>
               <span class="proj-note">Stok opname, hitung &amp; selisih</span>
             </div>
-            <div class="proj-view" aria-hidden="true">
-              <div class="mock-count">
-                <div class="row">
-                  <span class="sku">SKU-0142</span>
-                  <span class="qty">120</span>
-                  <i class="ph ph-check-circle"></i>
-                </div>
-                <div class="row">
-                  <span class="sku">SKU-0551</span>
-                  <span class="qty">84</span>
-                  <i class="ph ph-check-circle"></i>
-                </div>
-                <div class="row diff">
-                  <span class="sku">SKU-0902</span>
-                  <span class="qty">-3</span>
-                  <i class="ph ph-warning-circle"></i>
-                </div>
-              </div>
+            <div class="proj-view proj-view-kazana">
+              <img src="assets/kazanaopname-ui-sesi.png"
+                alt="Screenshot UI KazanaOpname: sesi opname dengan progres hitung, daftar produk, input stok fisik, dan detail item" loading="lazy">
             </div>
           </article>
 
-          <!-- 3: Identitas visual -->
-          <article class="proj-card v3 rv">
-            <div class="proj-info">
-              <span class="proj-tag">Desain Grafis</span>
-              <h3>Logo &amp; identitas visual</h3>
-              <p>Logo, palet warna, dan tipografi disusun jadi satu bahasa visual yang konsisten dipakai harian.</p>
-              <a class="proj-link" href="identitas-visual.html">
-                Baca fitur lengkap
-                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-              </a>
-              <span class="proj-note">Roomys, arah visual</span>
-            </div>
-            <div class="proj-view">
-              <img class="proj-shot logo-shot" src="assets/roomys-logo-transparent.png"
-                alt="Logo Roomys Cafe & Bakery" loading="lazy">
-            </div>
-          </article>
-
-          <!-- 4: Video & motion -->
-          <article class="proj-card v4 rv">
-            <div class="proj-info">
-              <span class="proj-tag">Video, Motion</span>
-              <h3>Video editing &amp; AI motion graphics</h3>
-              <p>Reel dan iklan singkat: pacing pas, subtitle rapi, dengan motion graphics yang dibantu AI.</p>
-              <a class="proj-link" href="video-motion.html">
-                Baca fitur lengkap
-                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-              </a>
-              <span class="proj-note">Roomys, rilis harian</span>
-            </div>
-            <div class="proj-view" aria-hidden="true">
-              <div class="mock-motion">
-                <span class="play"><i class="ph ph-play" aria-hidden="true"></i></span>
-                <span class="track">
-                  <i class="clip a"></i>
-                  <i class="clip b"></i>
-                  <i class="clip c"></i>
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 5: Tata Kerja -->
+          <!-- 3: Tata Kerja -->
           <article class="proj-card v5 rv">
             <div class="proj-info">
               <span class="proj-tag">Web App, SOP</span>
               <h3>Tata Kerja</h3>
-              <p>Aplikasi pembuat dan distribusi SOP dalam satu wadah: susun prosedur, bagikan ke tim, dan jaga versinya tetap terbaru.</p>
+              <p>Platform AI untuk menyusun SOP dan KPI, mengedit dokumen, lalu membagikannya ke tim melalui portal karyawan.</p>
               <a class="proj-link" href="tata-kerja.html">
                 Baca fitur lengkap
                 <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
               </a>
               <span class="proj-note">SOP, satu wadah</span>
             </div>
-            <div class="proj-view" aria-hidden="true">
-              <div class="mock-sop">
-                <div class="sop-row">
-                  <i>1</i>
-                  <span></span>
-                </div>
-                <div class="sop-row">
-                  <i>2</i>
-                  <span></span>
-                </div>
-                <div class="sop-row">
-                  <i>3</i>
-                  <span></span>
-                </div>
-              </div>
+            <div class="proj-view proj-view-tatakerja">
+              <img src="assets/tatakerja-ui-generator.png"
+                alt="TataKerja: pilihan metode untuk menyusun SOP lewat template, AI, tulisan bebas, atau wawancara terpandu" loading="lazy">
             </div>
           </article>
 
-          <!-- 6: NataUang -->
+          <!-- 4: NataUang -->
           <article class="proj-card v6 rv">
             <div class="proj-info">
               <span class="proj-tag">Web App, Keuangan</span>
@@ -2231,7 +2079,7 @@
             </div>
           </article>
 
-          <!-- 7: NataHarga -->
+          <!-- 5: NataHarga -->
           <article class="proj-card v7 rv">
             <div class="proj-info">
               <span class="proj-tag">Web App, HPP</span>
@@ -2480,3 +2328,6 @@
 </body>
 
 </html>
+
+
+
